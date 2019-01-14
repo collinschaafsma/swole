@@ -14,7 +14,15 @@ export type AtLeastOne<T, U = { [K in keyof T]: Pick<T, K> }> = Partial<T> &
   U[keyof U];
 
 export interface Exists {
+  exercise: (where?: ExerciseWhereInput) => Promise<boolean>;
+  exerciseLog: (where?: ExerciseLogWhereInput) => Promise<boolean>;
+  exerciseRoutine: (where?: ExerciseRoutineWhereInput) => Promise<boolean>;
+  profile: (where?: ProfileWhereInput) => Promise<boolean>;
+  program: (where?: ProgramWhereInput) => Promise<boolean>;
   user: (where?: UserWhereInput) => Promise<boolean>;
+  workout: (where?: WorkoutWhereInput) => Promise<boolean>;
+  workoutLog: (where?: WorkoutLogWhereInput) => Promise<boolean>;
+  workoutRoutine: (where?: WorkoutRoutineWhereInput) => Promise<boolean>;
 }
 
 export interface Node {}
@@ -36,6 +44,123 @@ export interface Prisma {
    * Queries
    */
 
+  exercise: (where: ExerciseWhereUniqueInput) => ExercisePromise;
+  exercises: (
+    args?: {
+      where?: ExerciseWhereInput;
+      orderBy?: ExerciseOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Exercise>;
+  exercisesConnection: (
+    args?: {
+      where?: ExerciseWhereInput;
+      orderBy?: ExerciseOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => ExerciseConnectionPromise;
+  exerciseLog: (where: ExerciseLogWhereUniqueInput) => ExerciseLogPromise;
+  exerciseLogs: (
+    args?: {
+      where?: ExerciseLogWhereInput;
+      orderBy?: ExerciseLogOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<ExerciseLog>;
+  exerciseLogsConnection: (
+    args?: {
+      where?: ExerciseLogWhereInput;
+      orderBy?: ExerciseLogOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => ExerciseLogConnectionPromise;
+  exerciseRoutine: (
+    where: ExerciseRoutineWhereUniqueInput
+  ) => ExerciseRoutinePromise;
+  exerciseRoutines: (
+    args?: {
+      where?: ExerciseRoutineWhereInput;
+      orderBy?: ExerciseRoutineOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<ExerciseRoutine>;
+  exerciseRoutinesConnection: (
+    args?: {
+      where?: ExerciseRoutineWhereInput;
+      orderBy?: ExerciseRoutineOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => ExerciseRoutineConnectionPromise;
+  profile: (where: ProfileWhereUniqueInput) => ProfilePromise;
+  profiles: (
+    args?: {
+      where?: ProfileWhereInput;
+      orderBy?: ProfileOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Profile>;
+  profilesConnection: (
+    args?: {
+      where?: ProfileWhereInput;
+      orderBy?: ProfileOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => ProfileConnectionPromise;
+  program: (where: ProgramWhereUniqueInput) => ProgramPromise;
+  programs: (
+    args?: {
+      where?: ProgramWhereInput;
+      orderBy?: ProgramOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Program>;
+  programsConnection: (
+    args?: {
+      where?: ProgramWhereInput;
+      orderBy?: ProgramOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => ProgramConnectionPromise;
   user: (where: UserWhereUniqueInput) => UserPromise;
   users: (
     args?: {
@@ -59,12 +184,180 @@ export interface Prisma {
       last?: Int;
     }
   ) => UserConnectionPromise;
+  workout: (where: WorkoutWhereUniqueInput) => WorkoutPromise;
+  workouts: (
+    args?: {
+      where?: WorkoutWhereInput;
+      orderBy?: WorkoutOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<Workout>;
+  workoutsConnection: (
+    args?: {
+      where?: WorkoutWhereInput;
+      orderBy?: WorkoutOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => WorkoutConnectionPromise;
+  workoutLog: (where: WorkoutLogWhereUniqueInput) => WorkoutLogPromise;
+  workoutLogs: (
+    args?: {
+      where?: WorkoutLogWhereInput;
+      orderBy?: WorkoutLogOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<WorkoutLog>;
+  workoutLogsConnection: (
+    args?: {
+      where?: WorkoutLogWhereInput;
+      orderBy?: WorkoutLogOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => WorkoutLogConnectionPromise;
+  workoutRoutine: (
+    where: WorkoutRoutineWhereUniqueInput
+  ) => WorkoutRoutinePromise;
+  workoutRoutines: (
+    args?: {
+      where?: WorkoutRoutineWhereInput;
+      orderBy?: WorkoutRoutineOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => FragmentableArray<WorkoutRoutine>;
+  workoutRoutinesConnection: (
+    args?: {
+      where?: WorkoutRoutineWhereInput;
+      orderBy?: WorkoutRoutineOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => WorkoutRoutineConnectionPromise;
   node: (args: { id: ID_Output }) => Node;
 
   /**
    * Mutations
    */
 
+  createExercise: (data: ExerciseCreateInput) => ExercisePromise;
+  updateExercise: (
+    args: { data: ExerciseUpdateInput; where: ExerciseWhereUniqueInput }
+  ) => ExercisePromise;
+  updateManyExercises: (
+    args: { data: ExerciseUpdateManyMutationInput; where?: ExerciseWhereInput }
+  ) => BatchPayloadPromise;
+  upsertExercise: (
+    args: {
+      where: ExerciseWhereUniqueInput;
+      create: ExerciseCreateInput;
+      update: ExerciseUpdateInput;
+    }
+  ) => ExercisePromise;
+  deleteExercise: (where: ExerciseWhereUniqueInput) => ExercisePromise;
+  deleteManyExercises: (where?: ExerciseWhereInput) => BatchPayloadPromise;
+  createExerciseLog: (data: ExerciseLogCreateInput) => ExerciseLogPromise;
+  updateExerciseLog: (
+    args: { data: ExerciseLogUpdateInput; where: ExerciseLogWhereUniqueInput }
+  ) => ExerciseLogPromise;
+  updateManyExerciseLogs: (
+    args: {
+      data: ExerciseLogUpdateManyMutationInput;
+      where?: ExerciseLogWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertExerciseLog: (
+    args: {
+      where: ExerciseLogWhereUniqueInput;
+      create: ExerciseLogCreateInput;
+      update: ExerciseLogUpdateInput;
+    }
+  ) => ExerciseLogPromise;
+  deleteExerciseLog: (where: ExerciseLogWhereUniqueInput) => ExerciseLogPromise;
+  deleteManyExerciseLogs: (
+    where?: ExerciseLogWhereInput
+  ) => BatchPayloadPromise;
+  createExerciseRoutine: (
+    data: ExerciseRoutineCreateInput
+  ) => ExerciseRoutinePromise;
+  updateExerciseRoutine: (
+    args: {
+      data: ExerciseRoutineUpdateInput;
+      where: ExerciseRoutineWhereUniqueInput;
+    }
+  ) => ExerciseRoutinePromise;
+  updateManyExerciseRoutines: (
+    args: {
+      data: ExerciseRoutineUpdateManyMutationInput;
+      where?: ExerciseRoutineWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertExerciseRoutine: (
+    args: {
+      where: ExerciseRoutineWhereUniqueInput;
+      create: ExerciseRoutineCreateInput;
+      update: ExerciseRoutineUpdateInput;
+    }
+  ) => ExerciseRoutinePromise;
+  deleteExerciseRoutine: (
+    where: ExerciseRoutineWhereUniqueInput
+  ) => ExerciseRoutinePromise;
+  deleteManyExerciseRoutines: (
+    where?: ExerciseRoutineWhereInput
+  ) => BatchPayloadPromise;
+  createProfile: (data: ProfileCreateInput) => ProfilePromise;
+  updateProfile: (
+    args: { data: ProfileUpdateInput; where: ProfileWhereUniqueInput }
+  ) => ProfilePromise;
+  updateManyProfiles: (
+    args: { data: ProfileUpdateManyMutationInput; where?: ProfileWhereInput }
+  ) => BatchPayloadPromise;
+  upsertProfile: (
+    args: {
+      where: ProfileWhereUniqueInput;
+      create: ProfileCreateInput;
+      update: ProfileUpdateInput;
+    }
+  ) => ProfilePromise;
+  deleteProfile: (where: ProfileWhereUniqueInput) => ProfilePromise;
+  deleteManyProfiles: (where?: ProfileWhereInput) => BatchPayloadPromise;
+  createProgram: (data: ProgramCreateInput) => ProgramPromise;
+  updateProgram: (
+    args: { data: ProgramUpdateInput; where: ProgramWhereUniqueInput }
+  ) => ProgramPromise;
+  updateManyPrograms: (
+    args: { data: ProgramUpdateManyMutationInput; where?: ProgramWhereInput }
+  ) => BatchPayloadPromise;
+  upsertProgram: (
+    args: {
+      where: ProgramWhereUniqueInput;
+      create: ProgramCreateInput;
+      update: ProgramUpdateInput;
+    }
+  ) => ProgramPromise;
+  deleteProgram: (where: ProgramWhereUniqueInput) => ProgramPromise;
+  deleteManyPrograms: (where?: ProgramWhereInput) => BatchPayloadPromise;
   createUser: (data: UserCreateInput) => UserPromise;
   updateUser: (
     args: { data: UserUpdateInput; where: UserWhereUniqueInput }
@@ -81,6 +374,69 @@ export interface Prisma {
   ) => UserPromise;
   deleteUser: (where: UserWhereUniqueInput) => UserPromise;
   deleteManyUsers: (where?: UserWhereInput) => BatchPayloadPromise;
+  createWorkout: (data: WorkoutCreateInput) => WorkoutPromise;
+  updateWorkout: (
+    args: { data: WorkoutUpdateInput; where: WorkoutWhereUniqueInput }
+  ) => WorkoutPromise;
+  updateManyWorkouts: (
+    args: { data: WorkoutUpdateManyMutationInput; where?: WorkoutWhereInput }
+  ) => BatchPayloadPromise;
+  upsertWorkout: (
+    args: {
+      where: WorkoutWhereUniqueInput;
+      create: WorkoutCreateInput;
+      update: WorkoutUpdateInput;
+    }
+  ) => WorkoutPromise;
+  deleteWorkout: (where: WorkoutWhereUniqueInput) => WorkoutPromise;
+  deleteManyWorkouts: (where?: WorkoutWhereInput) => BatchPayloadPromise;
+  createWorkoutLog: (data: WorkoutLogCreateInput) => WorkoutLogPromise;
+  updateWorkoutLog: (
+    args: { data: WorkoutLogUpdateInput; where: WorkoutLogWhereUniqueInput }
+  ) => WorkoutLogPromise;
+  updateManyWorkoutLogs: (
+    args: {
+      data: WorkoutLogUpdateManyMutationInput;
+      where?: WorkoutLogWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertWorkoutLog: (
+    args: {
+      where: WorkoutLogWhereUniqueInput;
+      create: WorkoutLogCreateInput;
+      update: WorkoutLogUpdateInput;
+    }
+  ) => WorkoutLogPromise;
+  deleteWorkoutLog: (where: WorkoutLogWhereUniqueInput) => WorkoutLogPromise;
+  deleteManyWorkoutLogs: (where?: WorkoutLogWhereInput) => BatchPayloadPromise;
+  createWorkoutRoutine: (
+    data: WorkoutRoutineCreateInput
+  ) => WorkoutRoutinePromise;
+  updateWorkoutRoutine: (
+    args: {
+      data: WorkoutRoutineUpdateInput;
+      where: WorkoutRoutineWhereUniqueInput;
+    }
+  ) => WorkoutRoutinePromise;
+  updateManyWorkoutRoutines: (
+    args: {
+      data: WorkoutRoutineUpdateManyMutationInput;
+      where?: WorkoutRoutineWhereInput;
+    }
+  ) => BatchPayloadPromise;
+  upsertWorkoutRoutine: (
+    args: {
+      where: WorkoutRoutineWhereUniqueInput;
+      create: WorkoutRoutineCreateInput;
+      update: WorkoutRoutineUpdateInput;
+    }
+  ) => WorkoutRoutinePromise;
+  deleteWorkoutRoutine: (
+    where: WorkoutRoutineWhereUniqueInput
+  ) => WorkoutRoutinePromise;
+  deleteManyWorkoutRoutines: (
+    where?: WorkoutRoutineWhereInput
+  ) => BatchPayloadPromise;
 
   /**
    * Subscriptions
@@ -90,9 +446,33 @@ export interface Prisma {
 }
 
 export interface Subscription {
+  exercise: (
+    where?: ExerciseSubscriptionWhereInput
+  ) => ExerciseSubscriptionPayloadSubscription;
+  exerciseLog: (
+    where?: ExerciseLogSubscriptionWhereInput
+  ) => ExerciseLogSubscriptionPayloadSubscription;
+  exerciseRoutine: (
+    where?: ExerciseRoutineSubscriptionWhereInput
+  ) => ExerciseRoutineSubscriptionPayloadSubscription;
+  profile: (
+    where?: ProfileSubscriptionWhereInput
+  ) => ProfileSubscriptionPayloadSubscription;
+  program: (
+    where?: ProgramSubscriptionWhereInput
+  ) => ProgramSubscriptionPayloadSubscription;
   user: (
     where?: UserSubscriptionWhereInput
   ) => UserSubscriptionPayloadSubscription;
+  workout: (
+    where?: WorkoutSubscriptionWhereInput
+  ) => WorkoutSubscriptionPayloadSubscription;
+  workoutLog: (
+    where?: WorkoutLogSubscriptionWhereInput
+  ) => WorkoutLogSubscriptionPayloadSubscription;
+  workoutRoutine: (
+    where?: WorkoutRoutineSubscriptionWhereInput
+  ) => WorkoutRoutineSubscriptionPayloadSubscription;
 }
 
 export interface ClientConstructor<T> {
@@ -103,7 +483,113 @@ export interface ClientConstructor<T> {
  * Types
  */
 
-export type UserOrderByInput =
+export type WeekDay =
+  | "Monday"
+  | "Tuesday"
+  | "Wednesday"
+  | "Thursday"
+  | "Friday"
+  | "Saturday"
+  | "Sunday"
+  | "Any";
+
+export type WorkoutLogOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "notes_ASC"
+  | "notes_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type WorkoutRoutineOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "order_ASC"
+  | "order_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type WorkoutOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "weekDay_ASC"
+  | "weekDay_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC"
+  | "deletedAt_ASC"
+  | "deletedAt_DESC";
+
+export type ExerciseLogOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "set_ASC"
+  | "set_DESC"
+  | "reps_ASC"
+  | "reps_DESC"
+  | "weight_ASC"
+  | "weight_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type ExerciseOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "videoUrl_ASC"
+  | "videoUrl_DESC"
+  | "isProgressive_ASC"
+  | "isProgressive_DESC"
+  | "warmup_ASC"
+  | "warmup_DESC"
+  | "weightProgression_ASC"
+  | "weightProgression_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC"
+  | "deletedAt_ASC"
+  | "deletedAt_DESC";
+
+export type ExerciseRoutineOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "sets_ASC"
+  | "sets_DESC"
+  | "reps_ASC"
+  | "reps_DESC"
+  | "restBetweenSets_ASC"
+  | "restBetweenSets_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type ProfileOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "bodyWeight_ASC"
+  | "bodyWeight_DESC"
+  | "age_ASC"
+  | "age_DESC"
+  | "birthday_ASC"
+  | "birthday_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC";
+
+export type ProgramOrderByInput =
   | "id_ASC"
   | "id_DESC"
   | "name_ASC"
@@ -111,13 +597,316 @@ export type UserOrderByInput =
   | "createdAt_ASC"
   | "createdAt_DESC"
   | "updatedAt_ASC"
-  | "updatedAt_DESC";
+  | "updatedAt_DESC"
+  | "deletedAt_ASC"
+  | "deletedAt_DESC";
+
+export type UserOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "name_ASC"
+  | "name_DESC"
+  | "email_ASC"
+  | "email_DESC"
+  | "password_ASC"
+  | "password_DESC"
+  | "createdAt_ASC"
+  | "createdAt_DESC"
+  | "updatedAt_ASC"
+  | "updatedAt_DESC"
+  | "deletedAt_ASC"
+  | "deletedAt_DESC";
 
 export type MutationType = "CREATED" | "UPDATED" | "DELETED";
 
-export type UserWhereUniqueInput = AtLeastOne<{
+export type ExerciseWhereUniqueInput = AtLeastOne<{
   id: ID_Input;
 }>;
+
+export interface WorkoutLogWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  workout?: WorkoutWhereInput;
+  program?: ProgramWhereInput;
+  notes?: String;
+  notes_not?: String;
+  notes_in?: String[] | String;
+  notes_not_in?: String[] | String;
+  notes_lt?: String;
+  notes_lte?: String;
+  notes_gt?: String;
+  notes_gte?: String;
+  notes_contains?: String;
+  notes_not_contains?: String;
+  notes_starts_with?: String;
+  notes_not_starts_with?: String;
+  notes_ends_with?: String;
+  notes_not_ends_with?: String;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  user?: UserWhereInput;
+  exerciseLogs_every?: ExerciseLogWhereInput;
+  exerciseLogs_some?: ExerciseLogWhereInput;
+  exerciseLogs_none?: ExerciseLogWhereInput;
+  AND?: WorkoutLogWhereInput[] | WorkoutLogWhereInput;
+  OR?: WorkoutLogWhereInput[] | WorkoutLogWhereInput;
+  NOT?: WorkoutLogWhereInput[] | WorkoutLogWhereInput;
+}
+
+export interface WorkoutWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  weekDay?: WeekDay;
+  weekDay_not?: WeekDay;
+  weekDay_in?: WeekDay[] | WeekDay;
+  weekDay_not_in?: WeekDay[] | WeekDay;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  deletedAt?: DateTimeInput;
+  deletedAt_not?: DateTimeInput;
+  deletedAt_in?: DateTimeInput[] | DateTimeInput;
+  deletedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  deletedAt_lt?: DateTimeInput;
+  deletedAt_lte?: DateTimeInput;
+  deletedAt_gt?: DateTimeInput;
+  deletedAt_gte?: DateTimeInput;
+  exercises_every?: WorkoutRoutineWhereInput;
+  exercises_some?: WorkoutRoutineWhereInput;
+  exercises_none?: WorkoutRoutineWhereInput;
+  author?: UserWhereInput;
+  AND?: WorkoutWhereInput[] | WorkoutWhereInput;
+  OR?: WorkoutWhereInput[] | WorkoutWhereInput;
+  NOT?: WorkoutWhereInput[] | WorkoutWhereInput;
+}
+
+export interface WorkoutRoutineWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  exercise?: ExerciseWhereInput;
+  order?: Int;
+  order_not?: Int;
+  order_in?: Int[] | Int;
+  order_not_in?: Int[] | Int;
+  order_lt?: Int;
+  order_lte?: Int;
+  order_gt?: Int;
+  order_gte?: Int;
+  AND?: WorkoutRoutineWhereInput[] | WorkoutRoutineWhereInput;
+  OR?: WorkoutRoutineWhereInput[] | WorkoutRoutineWhereInput;
+  NOT?: WorkoutRoutineWhereInput[] | WorkoutRoutineWhereInput;
+}
+
+export interface ExerciseWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  videoUrl?: String;
+  videoUrl_not?: String;
+  videoUrl_in?: String[] | String;
+  videoUrl_not_in?: String[] | String;
+  videoUrl_lt?: String;
+  videoUrl_lte?: String;
+  videoUrl_gt?: String;
+  videoUrl_gte?: String;
+  videoUrl_contains?: String;
+  videoUrl_not_contains?: String;
+  videoUrl_starts_with?: String;
+  videoUrl_not_starts_with?: String;
+  videoUrl_ends_with?: String;
+  videoUrl_not_ends_with?: String;
+  isProgressive?: Boolean;
+  isProgressive_not?: Boolean;
+  warmup?: String;
+  warmup_not?: String;
+  warmup_in?: String[] | String;
+  warmup_not_in?: String[] | String;
+  warmup_lt?: String;
+  warmup_lte?: String;
+  warmup_gt?: String;
+  warmup_gte?: String;
+  warmup_contains?: String;
+  warmup_not_contains?: String;
+  warmup_starts_with?: String;
+  warmup_not_starts_with?: String;
+  warmup_ends_with?: String;
+  warmup_not_ends_with?: String;
+  routine?: ExerciseRoutineWhereInput;
+  weightProgression?: Float;
+  weightProgression_not?: Float;
+  weightProgression_in?: Float[] | Float;
+  weightProgression_not_in?: Float[] | Float;
+  weightProgression_lt?: Float;
+  weightProgression_lte?: Float;
+  weightProgression_gt?: Float;
+  weightProgression_gte?: Float;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  deletedAt?: DateTimeInput;
+  deletedAt_not?: DateTimeInput;
+  deletedAt_in?: DateTimeInput[] | DateTimeInput;
+  deletedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  deletedAt_lt?: DateTimeInput;
+  deletedAt_lte?: DateTimeInput;
+  deletedAt_gt?: DateTimeInput;
+  deletedAt_gte?: DateTimeInput;
+  author?: UserWhereInput;
+  AND?: ExerciseWhereInput[] | ExerciseWhereInput;
+  OR?: ExerciseWhereInput[] | ExerciseWhereInput;
+  NOT?: ExerciseWhereInput[] | ExerciseWhereInput;
+}
+
+export interface ExerciseRoutineWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  sets?: Int;
+  sets_not?: Int;
+  sets_in?: Int[] | Int;
+  sets_not_in?: Int[] | Int;
+  sets_lt?: Int;
+  sets_lte?: Int;
+  sets_gt?: Int;
+  sets_gte?: Int;
+  reps?: Int;
+  reps_not?: Int;
+  reps_in?: Int[] | Int;
+  reps_not_in?: Int[] | Int;
+  reps_lt?: Int;
+  reps_lte?: Int;
+  reps_gt?: Int;
+  reps_gte?: Int;
+  restBetweenSets?: Int;
+  restBetweenSets_not?: Int;
+  restBetweenSets_in?: Int[] | Int;
+  restBetweenSets_not_in?: Int[] | Int;
+  restBetweenSets_lt?: Int;
+  restBetweenSets_lte?: Int;
+  restBetweenSets_gt?: Int;
+  restBetweenSets_gte?: Int;
+  AND?: ExerciseRoutineWhereInput[] | ExerciseRoutineWhereInput;
+  OR?: ExerciseRoutineWhereInput[] | ExerciseRoutineWhereInput;
+  NOT?: ExerciseRoutineWhereInput[] | ExerciseRoutineWhereInput;
+}
 
 export interface UserWhereInput {
   id?: ID_Input;
@@ -148,21 +937,1124 @@ export interface UserWhereInput {
   name_not_starts_with?: String;
   name_ends_with?: String;
   name_not_ends_with?: String;
+  email?: String;
+  email_not?: String;
+  email_in?: String[] | String;
+  email_not_in?: String[] | String;
+  email_lt?: String;
+  email_lte?: String;
+  email_gt?: String;
+  email_gte?: String;
+  email_contains?: String;
+  email_not_contains?: String;
+  email_starts_with?: String;
+  email_not_starts_with?: String;
+  email_ends_with?: String;
+  email_not_ends_with?: String;
+  password?: String;
+  password_not?: String;
+  password_in?: String[] | String;
+  password_not_in?: String[] | String;
+  password_lt?: String;
+  password_lte?: String;
+  password_gt?: String;
+  password_gte?: String;
+  password_contains?: String;
+  password_not_contains?: String;
+  password_starts_with?: String;
+  password_not_starts_with?: String;
+  password_ends_with?: String;
+  password_not_ends_with?: String;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  deletedAt?: DateTimeInput;
+  deletedAt_not?: DateTimeInput;
+  deletedAt_in?: DateTimeInput[] | DateTimeInput;
+  deletedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  deletedAt_lt?: DateTimeInput;
+  deletedAt_lte?: DateTimeInput;
+  deletedAt_gt?: DateTimeInput;
+  deletedAt_gte?: DateTimeInput;
+  workoutLogs_every?: WorkoutLogWhereInput;
+  workoutLogs_some?: WorkoutLogWhereInput;
+  workoutLogs_none?: WorkoutLogWhereInput;
+  profile?: ProfileWhereInput;
   AND?: UserWhereInput[] | UserWhereInput;
   OR?: UserWhereInput[] | UserWhereInput;
   NOT?: UserWhereInput[] | UserWhereInput;
 }
 
+export interface ProfileWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  bodyWeight?: Float;
+  bodyWeight_not?: Float;
+  bodyWeight_in?: Float[] | Float;
+  bodyWeight_not_in?: Float[] | Float;
+  bodyWeight_lt?: Float;
+  bodyWeight_lte?: Float;
+  bodyWeight_gt?: Float;
+  bodyWeight_gte?: Float;
+  age?: Int;
+  age_not?: Int;
+  age_in?: Int[] | Int;
+  age_not_in?: Int[] | Int;
+  age_lt?: Int;
+  age_lte?: Int;
+  age_gt?: Int;
+  age_gte?: Int;
+  birthday?: DateTimeInput;
+  birthday_not?: DateTimeInput;
+  birthday_in?: DateTimeInput[] | DateTimeInput;
+  birthday_not_in?: DateTimeInput[] | DateTimeInput;
+  birthday_lt?: DateTimeInput;
+  birthday_lte?: DateTimeInput;
+  birthday_gt?: DateTimeInput;
+  birthday_gte?: DateTimeInput;
+  AND?: ProfileWhereInput[] | ProfileWhereInput;
+  OR?: ProfileWhereInput[] | ProfileWhereInput;
+  NOT?: ProfileWhereInput[] | ProfileWhereInput;
+}
+
+export interface ProgramWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  deletedAt?: DateTimeInput;
+  deletedAt_not?: DateTimeInput;
+  deletedAt_in?: DateTimeInput[] | DateTimeInput;
+  deletedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  deletedAt_lt?: DateTimeInput;
+  deletedAt_lte?: DateTimeInput;
+  deletedAt_gt?: DateTimeInput;
+  deletedAt_gte?: DateTimeInput;
+  workouts_every?: WorkoutWhereInput;
+  workouts_some?: WorkoutWhereInput;
+  workouts_none?: WorkoutWhereInput;
+  owner?: UserWhereInput;
+  AND?: ProgramWhereInput[] | ProgramWhereInput;
+  OR?: ProgramWhereInput[] | ProgramWhereInput;
+  NOT?: ProgramWhereInput[] | ProgramWhereInput;
+}
+
+export interface ExerciseLogWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  set?: Int;
+  set_not?: Int;
+  set_in?: Int[] | Int;
+  set_not_in?: Int[] | Int;
+  set_lt?: Int;
+  set_lte?: Int;
+  set_gt?: Int;
+  set_gte?: Int;
+  reps?: Int;
+  reps_not?: Int;
+  reps_in?: Int[] | Int;
+  reps_not_in?: Int[] | Int;
+  reps_lt?: Int;
+  reps_lte?: Int;
+  reps_gt?: Int;
+  reps_gte?: Int;
+  weight?: Float;
+  weight_not?: Float;
+  weight_in?: Float[] | Float;
+  weight_not_in?: Float[] | Float;
+  weight_lt?: Float;
+  weight_lte?: Float;
+  weight_gt?: Float;
+  weight_gte?: Float;
+  exercise?: ExerciseWhereInput;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  workoutLog?: WorkoutLogWhereInput;
+  AND?: ExerciseLogWhereInput[] | ExerciseLogWhereInput;
+  OR?: ExerciseLogWhereInput[] | ExerciseLogWhereInput;
+  NOT?: ExerciseLogWhereInput[] | ExerciseLogWhereInput;
+}
+
+export type ExerciseLogWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export type ExerciseRoutineWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export type ProfileWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export type ProgramWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export type UserWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+  email?: String;
+}>;
+
+export type WorkoutWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export type WorkoutLogWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export type WorkoutRoutineWhereUniqueInput = AtLeastOne<{
+  id: ID_Input;
+}>;
+
+export interface ExerciseCreateInput {
+  name: String;
+  videoUrl?: String;
+  isProgressive?: Boolean;
+  warmup?: String;
+  routine: ExerciseRoutineCreateOneInput;
+  weightProgression?: Float;
+  deletedAt?: DateTimeInput;
+  author: UserCreateOneInput;
+}
+
+export interface ExerciseRoutineCreateOneInput {
+  create?: ExerciseRoutineCreateInput;
+  connect?: ExerciseRoutineWhereUniqueInput;
+}
+
+export interface ExerciseRoutineCreateInput {
+  sets: Int;
+  reps: Int;
+  restBetweenSets?: Int;
+}
+
+export interface UserCreateOneInput {
+  create?: UserCreateInput;
+  connect?: UserWhereUniqueInput;
+}
+
 export interface UserCreateInput {
   name: String;
+  email: String;
+  password: String;
+  deletedAt?: DateTimeInput;
+  workoutLogs?: WorkoutLogCreateManyWithoutUserInput;
+  profile?: ProfileCreateOneInput;
+}
+
+export interface WorkoutLogCreateManyWithoutUserInput {
+  create?:
+    | WorkoutLogCreateWithoutUserInput[]
+    | WorkoutLogCreateWithoutUserInput;
+  connect?: WorkoutLogWhereUniqueInput[] | WorkoutLogWhereUniqueInput;
+}
+
+export interface WorkoutLogCreateWithoutUserInput {
+  workout: WorkoutCreateOneInput;
+  program: ProgramCreateOneInput;
+  notes?: String;
+  exerciseLogs?: ExerciseLogCreateManyWithoutWorkoutLogInput;
+}
+
+export interface WorkoutCreateOneInput {
+  create?: WorkoutCreateInput;
+  connect?: WorkoutWhereUniqueInput;
+}
+
+export interface WorkoutCreateInput {
+  name: String;
+  weekDay: WeekDay;
+  deletedAt?: DateTimeInput;
+  exercises?: WorkoutRoutineCreateManyInput;
+  author: UserCreateOneInput;
+}
+
+export interface WorkoutRoutineCreateManyInput {
+  create?: WorkoutRoutineCreateInput[] | WorkoutRoutineCreateInput;
+  connect?: WorkoutRoutineWhereUniqueInput[] | WorkoutRoutineWhereUniqueInput;
+}
+
+export interface WorkoutRoutineCreateInput {
+  exercise: ExerciseCreateOneInput;
+  order: Int;
+}
+
+export interface ExerciseCreateOneInput {
+  create?: ExerciseCreateInput;
+  connect?: ExerciseWhereUniqueInput;
+}
+
+export interface ProgramCreateOneInput {
+  create?: ProgramCreateInput;
+  connect?: ProgramWhereUniqueInput;
+}
+
+export interface ProgramCreateInput {
+  name: String;
+  deletedAt?: DateTimeInput;
+  workouts?: WorkoutCreateManyInput;
+  owner: UserCreateOneInput;
+}
+
+export interface WorkoutCreateManyInput {
+  create?: WorkoutCreateInput[] | WorkoutCreateInput;
+  connect?: WorkoutWhereUniqueInput[] | WorkoutWhereUniqueInput;
+}
+
+export interface ExerciseLogCreateManyWithoutWorkoutLogInput {
+  create?:
+    | ExerciseLogCreateWithoutWorkoutLogInput[]
+    | ExerciseLogCreateWithoutWorkoutLogInput;
+  connect?: ExerciseLogWhereUniqueInput[] | ExerciseLogWhereUniqueInput;
+}
+
+export interface ExerciseLogCreateWithoutWorkoutLogInput {
+  set: Int;
+  reps: Int;
+  weight?: Float;
+  exercise: ExerciseCreateOneInput;
+}
+
+export interface ProfileCreateOneInput {
+  create?: ProfileCreateInput;
+  connect?: ProfileWhereUniqueInput;
+}
+
+export interface ProfileCreateInput {
+  bodyWeight?: Float;
+  age?: Int;
+  birthday?: DateTimeInput;
+}
+
+export interface ExerciseUpdateInput {
+  name?: String;
+  videoUrl?: String;
+  isProgressive?: Boolean;
+  warmup?: String;
+  routine?: ExerciseRoutineUpdateOneRequiredInput;
+  weightProgression?: Float;
+  deletedAt?: DateTimeInput;
+  author?: UserUpdateOneRequiredInput;
+}
+
+export interface ExerciseRoutineUpdateOneRequiredInput {
+  create?: ExerciseRoutineCreateInput;
+  update?: ExerciseRoutineUpdateDataInput;
+  upsert?: ExerciseRoutineUpsertNestedInput;
+  connect?: ExerciseRoutineWhereUniqueInput;
+}
+
+export interface ExerciseRoutineUpdateDataInput {
+  sets?: Int;
+  reps?: Int;
+  restBetweenSets?: Int;
+}
+
+export interface ExerciseRoutineUpsertNestedInput {
+  update: ExerciseRoutineUpdateDataInput;
+  create: ExerciseRoutineCreateInput;
+}
+
+export interface UserUpdateOneRequiredInput {
+  create?: UserCreateInput;
+  update?: UserUpdateDataInput;
+  upsert?: UserUpsertNestedInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserUpdateDataInput {
+  name?: String;
+  email?: String;
+  password?: String;
+  deletedAt?: DateTimeInput;
+  workoutLogs?: WorkoutLogUpdateManyWithoutUserInput;
+  profile?: ProfileUpdateOneInput;
+}
+
+export interface WorkoutLogUpdateManyWithoutUserInput {
+  create?:
+    | WorkoutLogCreateWithoutUserInput[]
+    | WorkoutLogCreateWithoutUserInput;
+  delete?: WorkoutLogWhereUniqueInput[] | WorkoutLogWhereUniqueInput;
+  connect?: WorkoutLogWhereUniqueInput[] | WorkoutLogWhereUniqueInput;
+  disconnect?: WorkoutLogWhereUniqueInput[] | WorkoutLogWhereUniqueInput;
+  update?:
+    | WorkoutLogUpdateWithWhereUniqueWithoutUserInput[]
+    | WorkoutLogUpdateWithWhereUniqueWithoutUserInput;
+  upsert?:
+    | WorkoutLogUpsertWithWhereUniqueWithoutUserInput[]
+    | WorkoutLogUpsertWithWhereUniqueWithoutUserInput;
+  deleteMany?: WorkoutLogScalarWhereInput[] | WorkoutLogScalarWhereInput;
+  updateMany?:
+    | WorkoutLogUpdateManyWithWhereNestedInput[]
+    | WorkoutLogUpdateManyWithWhereNestedInput;
+}
+
+export interface WorkoutLogUpdateWithWhereUniqueWithoutUserInput {
+  where: WorkoutLogWhereUniqueInput;
+  data: WorkoutLogUpdateWithoutUserDataInput;
+}
+
+export interface WorkoutLogUpdateWithoutUserDataInput {
+  workout?: WorkoutUpdateOneRequiredInput;
+  program?: ProgramUpdateOneRequiredInput;
+  notes?: String;
+  exerciseLogs?: ExerciseLogUpdateManyWithoutWorkoutLogInput;
+}
+
+export interface WorkoutUpdateOneRequiredInput {
+  create?: WorkoutCreateInput;
+  update?: WorkoutUpdateDataInput;
+  upsert?: WorkoutUpsertNestedInput;
+  connect?: WorkoutWhereUniqueInput;
+}
+
+export interface WorkoutUpdateDataInput {
+  name?: String;
+  weekDay?: WeekDay;
+  deletedAt?: DateTimeInput;
+  exercises?: WorkoutRoutineUpdateManyInput;
+  author?: UserUpdateOneRequiredInput;
+}
+
+export interface WorkoutRoutineUpdateManyInput {
+  create?: WorkoutRoutineCreateInput[] | WorkoutRoutineCreateInput;
+  update?:
+    | WorkoutRoutineUpdateWithWhereUniqueNestedInput[]
+    | WorkoutRoutineUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | WorkoutRoutineUpsertWithWhereUniqueNestedInput[]
+    | WorkoutRoutineUpsertWithWhereUniqueNestedInput;
+  delete?: WorkoutRoutineWhereUniqueInput[] | WorkoutRoutineWhereUniqueInput;
+  connect?: WorkoutRoutineWhereUniqueInput[] | WorkoutRoutineWhereUniqueInput;
+  disconnect?:
+    | WorkoutRoutineWhereUniqueInput[]
+    | WorkoutRoutineWhereUniqueInput;
+  deleteMany?:
+    | WorkoutRoutineScalarWhereInput[]
+    | WorkoutRoutineScalarWhereInput;
+  updateMany?:
+    | WorkoutRoutineUpdateManyWithWhereNestedInput[]
+    | WorkoutRoutineUpdateManyWithWhereNestedInput;
+}
+
+export interface WorkoutRoutineUpdateWithWhereUniqueNestedInput {
+  where: WorkoutRoutineWhereUniqueInput;
+  data: WorkoutRoutineUpdateDataInput;
+}
+
+export interface WorkoutRoutineUpdateDataInput {
+  exercise?: ExerciseUpdateOneRequiredInput;
+  order?: Int;
+}
+
+export interface ExerciseUpdateOneRequiredInput {
+  create?: ExerciseCreateInput;
+  update?: ExerciseUpdateDataInput;
+  upsert?: ExerciseUpsertNestedInput;
+  connect?: ExerciseWhereUniqueInput;
+}
+
+export interface ExerciseUpdateDataInput {
+  name?: String;
+  videoUrl?: String;
+  isProgressive?: Boolean;
+  warmup?: String;
+  routine?: ExerciseRoutineUpdateOneRequiredInput;
+  weightProgression?: Float;
+  deletedAt?: DateTimeInput;
+  author?: UserUpdateOneRequiredInput;
+}
+
+export interface ExerciseUpsertNestedInput {
+  update: ExerciseUpdateDataInput;
+  create: ExerciseCreateInput;
+}
+
+export interface WorkoutRoutineUpsertWithWhereUniqueNestedInput {
+  where: WorkoutRoutineWhereUniqueInput;
+  update: WorkoutRoutineUpdateDataInput;
+  create: WorkoutRoutineCreateInput;
+}
+
+export interface WorkoutRoutineScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  order?: Int;
+  order_not?: Int;
+  order_in?: Int[] | Int;
+  order_not_in?: Int[] | Int;
+  order_lt?: Int;
+  order_lte?: Int;
+  order_gt?: Int;
+  order_gte?: Int;
+  AND?: WorkoutRoutineScalarWhereInput[] | WorkoutRoutineScalarWhereInput;
+  OR?: WorkoutRoutineScalarWhereInput[] | WorkoutRoutineScalarWhereInput;
+  NOT?: WorkoutRoutineScalarWhereInput[] | WorkoutRoutineScalarWhereInput;
+}
+
+export interface WorkoutRoutineUpdateManyWithWhereNestedInput {
+  where: WorkoutRoutineScalarWhereInput;
+  data: WorkoutRoutineUpdateManyDataInput;
+}
+
+export interface WorkoutRoutineUpdateManyDataInput {
+  order?: Int;
+}
+
+export interface WorkoutUpsertNestedInput {
+  update: WorkoutUpdateDataInput;
+  create: WorkoutCreateInput;
+}
+
+export interface ProgramUpdateOneRequiredInput {
+  create?: ProgramCreateInput;
+  update?: ProgramUpdateDataInput;
+  upsert?: ProgramUpsertNestedInput;
+  connect?: ProgramWhereUniqueInput;
+}
+
+export interface ProgramUpdateDataInput {
+  name?: String;
+  deletedAt?: DateTimeInput;
+  workouts?: WorkoutUpdateManyInput;
+  owner?: UserUpdateOneRequiredInput;
+}
+
+export interface WorkoutUpdateManyInput {
+  create?: WorkoutCreateInput[] | WorkoutCreateInput;
+  update?:
+    | WorkoutUpdateWithWhereUniqueNestedInput[]
+    | WorkoutUpdateWithWhereUniqueNestedInput;
+  upsert?:
+    | WorkoutUpsertWithWhereUniqueNestedInput[]
+    | WorkoutUpsertWithWhereUniqueNestedInput;
+  delete?: WorkoutWhereUniqueInput[] | WorkoutWhereUniqueInput;
+  connect?: WorkoutWhereUniqueInput[] | WorkoutWhereUniqueInput;
+  disconnect?: WorkoutWhereUniqueInput[] | WorkoutWhereUniqueInput;
+  deleteMany?: WorkoutScalarWhereInput[] | WorkoutScalarWhereInput;
+  updateMany?:
+    | WorkoutUpdateManyWithWhereNestedInput[]
+    | WorkoutUpdateManyWithWhereNestedInput;
+}
+
+export interface WorkoutUpdateWithWhereUniqueNestedInput {
+  where: WorkoutWhereUniqueInput;
+  data: WorkoutUpdateDataInput;
+}
+
+export interface WorkoutUpsertWithWhereUniqueNestedInput {
+  where: WorkoutWhereUniqueInput;
+  update: WorkoutUpdateDataInput;
+  create: WorkoutCreateInput;
+}
+
+export interface WorkoutScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  name?: String;
+  name_not?: String;
+  name_in?: String[] | String;
+  name_not_in?: String[] | String;
+  name_lt?: String;
+  name_lte?: String;
+  name_gt?: String;
+  name_gte?: String;
+  name_contains?: String;
+  name_not_contains?: String;
+  name_starts_with?: String;
+  name_not_starts_with?: String;
+  name_ends_with?: String;
+  name_not_ends_with?: String;
+  weekDay?: WeekDay;
+  weekDay_not?: WeekDay;
+  weekDay_in?: WeekDay[] | WeekDay;
+  weekDay_not_in?: WeekDay[] | WeekDay;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  updatedAt?: DateTimeInput;
+  updatedAt_not?: DateTimeInput;
+  updatedAt_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  updatedAt_lt?: DateTimeInput;
+  updatedAt_lte?: DateTimeInput;
+  updatedAt_gt?: DateTimeInput;
+  updatedAt_gte?: DateTimeInput;
+  deletedAt?: DateTimeInput;
+  deletedAt_not?: DateTimeInput;
+  deletedAt_in?: DateTimeInput[] | DateTimeInput;
+  deletedAt_not_in?: DateTimeInput[] | DateTimeInput;
+  deletedAt_lt?: DateTimeInput;
+  deletedAt_lte?: DateTimeInput;
+  deletedAt_gt?: DateTimeInput;
+  deletedAt_gte?: DateTimeInput;
+  AND?: WorkoutScalarWhereInput[] | WorkoutScalarWhereInput;
+  OR?: WorkoutScalarWhereInput[] | WorkoutScalarWhereInput;
+  NOT?: WorkoutScalarWhereInput[] | WorkoutScalarWhereInput;
+}
+
+export interface WorkoutUpdateManyWithWhereNestedInput {
+  where: WorkoutScalarWhereInput;
+  data: WorkoutUpdateManyDataInput;
+}
+
+export interface WorkoutUpdateManyDataInput {
+  name?: String;
+  weekDay?: WeekDay;
+  deletedAt?: DateTimeInput;
+}
+
+export interface ProgramUpsertNestedInput {
+  update: ProgramUpdateDataInput;
+  create: ProgramCreateInput;
+}
+
+export interface ExerciseLogUpdateManyWithoutWorkoutLogInput {
+  create?:
+    | ExerciseLogCreateWithoutWorkoutLogInput[]
+    | ExerciseLogCreateWithoutWorkoutLogInput;
+  delete?: ExerciseLogWhereUniqueInput[] | ExerciseLogWhereUniqueInput;
+  connect?: ExerciseLogWhereUniqueInput[] | ExerciseLogWhereUniqueInput;
+  disconnect?: ExerciseLogWhereUniqueInput[] | ExerciseLogWhereUniqueInput;
+  update?:
+    | ExerciseLogUpdateWithWhereUniqueWithoutWorkoutLogInput[]
+    | ExerciseLogUpdateWithWhereUniqueWithoutWorkoutLogInput;
+  upsert?:
+    | ExerciseLogUpsertWithWhereUniqueWithoutWorkoutLogInput[]
+    | ExerciseLogUpsertWithWhereUniqueWithoutWorkoutLogInput;
+  deleteMany?: ExerciseLogScalarWhereInput[] | ExerciseLogScalarWhereInput;
+  updateMany?:
+    | ExerciseLogUpdateManyWithWhereNestedInput[]
+    | ExerciseLogUpdateManyWithWhereNestedInput;
+}
+
+export interface ExerciseLogUpdateWithWhereUniqueWithoutWorkoutLogInput {
+  where: ExerciseLogWhereUniqueInput;
+  data: ExerciseLogUpdateWithoutWorkoutLogDataInput;
+}
+
+export interface ExerciseLogUpdateWithoutWorkoutLogDataInput {
+  set?: Int;
+  reps?: Int;
+  weight?: Float;
+  exercise?: ExerciseUpdateOneRequiredInput;
+}
+
+export interface ExerciseLogUpsertWithWhereUniqueWithoutWorkoutLogInput {
+  where: ExerciseLogWhereUniqueInput;
+  update: ExerciseLogUpdateWithoutWorkoutLogDataInput;
+  create: ExerciseLogCreateWithoutWorkoutLogInput;
+}
+
+export interface ExerciseLogScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  set?: Int;
+  set_not?: Int;
+  set_in?: Int[] | Int;
+  set_not_in?: Int[] | Int;
+  set_lt?: Int;
+  set_lte?: Int;
+  set_gt?: Int;
+  set_gte?: Int;
+  reps?: Int;
+  reps_not?: Int;
+  reps_in?: Int[] | Int;
+  reps_not_in?: Int[] | Int;
+  reps_lt?: Int;
+  reps_lte?: Int;
+  reps_gt?: Int;
+  reps_gte?: Int;
+  weight?: Float;
+  weight_not?: Float;
+  weight_in?: Float[] | Float;
+  weight_not_in?: Float[] | Float;
+  weight_lt?: Float;
+  weight_lte?: Float;
+  weight_gt?: Float;
+  weight_gte?: Float;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  AND?: ExerciseLogScalarWhereInput[] | ExerciseLogScalarWhereInput;
+  OR?: ExerciseLogScalarWhereInput[] | ExerciseLogScalarWhereInput;
+  NOT?: ExerciseLogScalarWhereInput[] | ExerciseLogScalarWhereInput;
+}
+
+export interface ExerciseLogUpdateManyWithWhereNestedInput {
+  where: ExerciseLogScalarWhereInput;
+  data: ExerciseLogUpdateManyDataInput;
+}
+
+export interface ExerciseLogUpdateManyDataInput {
+  set?: Int;
+  reps?: Int;
+  weight?: Float;
+}
+
+export interface WorkoutLogUpsertWithWhereUniqueWithoutUserInput {
+  where: WorkoutLogWhereUniqueInput;
+  update: WorkoutLogUpdateWithoutUserDataInput;
+  create: WorkoutLogCreateWithoutUserInput;
+}
+
+export interface WorkoutLogScalarWhereInput {
+  id?: ID_Input;
+  id_not?: ID_Input;
+  id_in?: ID_Input[] | ID_Input;
+  id_not_in?: ID_Input[] | ID_Input;
+  id_lt?: ID_Input;
+  id_lte?: ID_Input;
+  id_gt?: ID_Input;
+  id_gte?: ID_Input;
+  id_contains?: ID_Input;
+  id_not_contains?: ID_Input;
+  id_starts_with?: ID_Input;
+  id_not_starts_with?: ID_Input;
+  id_ends_with?: ID_Input;
+  id_not_ends_with?: ID_Input;
+  notes?: String;
+  notes_not?: String;
+  notes_in?: String[] | String;
+  notes_not_in?: String[] | String;
+  notes_lt?: String;
+  notes_lte?: String;
+  notes_gt?: String;
+  notes_gte?: String;
+  notes_contains?: String;
+  notes_not_contains?: String;
+  notes_starts_with?: String;
+  notes_not_starts_with?: String;
+  notes_ends_with?: String;
+  notes_not_ends_with?: String;
+  createdAt?: DateTimeInput;
+  createdAt_not?: DateTimeInput;
+  createdAt_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_not_in?: DateTimeInput[] | DateTimeInput;
+  createdAt_lt?: DateTimeInput;
+  createdAt_lte?: DateTimeInput;
+  createdAt_gt?: DateTimeInput;
+  createdAt_gte?: DateTimeInput;
+  AND?: WorkoutLogScalarWhereInput[] | WorkoutLogScalarWhereInput;
+  OR?: WorkoutLogScalarWhereInput[] | WorkoutLogScalarWhereInput;
+  NOT?: WorkoutLogScalarWhereInput[] | WorkoutLogScalarWhereInput;
+}
+
+export interface WorkoutLogUpdateManyWithWhereNestedInput {
+  where: WorkoutLogScalarWhereInput;
+  data: WorkoutLogUpdateManyDataInput;
+}
+
+export interface WorkoutLogUpdateManyDataInput {
+  notes?: String;
+}
+
+export interface ProfileUpdateOneInput {
+  create?: ProfileCreateInput;
+  update?: ProfileUpdateDataInput;
+  upsert?: ProfileUpsertNestedInput;
+  delete?: Boolean;
+  disconnect?: Boolean;
+  connect?: ProfileWhereUniqueInput;
+}
+
+export interface ProfileUpdateDataInput {
+  bodyWeight?: Float;
+  age?: Int;
+  birthday?: DateTimeInput;
+}
+
+export interface ProfileUpsertNestedInput {
+  update: ProfileUpdateDataInput;
+  create: ProfileCreateInput;
+}
+
+export interface UserUpsertNestedInput {
+  update: UserUpdateDataInput;
+  create: UserCreateInput;
+}
+
+export interface ExerciseUpdateManyMutationInput {
+  name?: String;
+  videoUrl?: String;
+  isProgressive?: Boolean;
+  warmup?: String;
+  weightProgression?: Float;
+  deletedAt?: DateTimeInput;
+}
+
+export interface ExerciseLogCreateInput {
+  set: Int;
+  reps: Int;
+  weight?: Float;
+  exercise: ExerciseCreateOneInput;
+  workoutLog: WorkoutLogCreateOneWithoutExerciseLogsInput;
+}
+
+export interface WorkoutLogCreateOneWithoutExerciseLogsInput {
+  create?: WorkoutLogCreateWithoutExerciseLogsInput;
+  connect?: WorkoutLogWhereUniqueInput;
+}
+
+export interface WorkoutLogCreateWithoutExerciseLogsInput {
+  workout: WorkoutCreateOneInput;
+  program: ProgramCreateOneInput;
+  notes?: String;
+  user: UserCreateOneWithoutWorkoutLogsInput;
+}
+
+export interface UserCreateOneWithoutWorkoutLogsInput {
+  create?: UserCreateWithoutWorkoutLogsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserCreateWithoutWorkoutLogsInput {
+  name: String;
+  email: String;
+  password: String;
+  deletedAt?: DateTimeInput;
+  profile?: ProfileCreateOneInput;
+}
+
+export interface ExerciseLogUpdateInput {
+  set?: Int;
+  reps?: Int;
+  weight?: Float;
+  exercise?: ExerciseUpdateOneRequiredInput;
+  workoutLog?: WorkoutLogUpdateOneRequiredWithoutExerciseLogsInput;
+}
+
+export interface WorkoutLogUpdateOneRequiredWithoutExerciseLogsInput {
+  create?: WorkoutLogCreateWithoutExerciseLogsInput;
+  update?: WorkoutLogUpdateWithoutExerciseLogsDataInput;
+  upsert?: WorkoutLogUpsertWithoutExerciseLogsInput;
+  connect?: WorkoutLogWhereUniqueInput;
+}
+
+export interface WorkoutLogUpdateWithoutExerciseLogsDataInput {
+  workout?: WorkoutUpdateOneRequiredInput;
+  program?: ProgramUpdateOneRequiredInput;
+  notes?: String;
+  user?: UserUpdateOneRequiredWithoutWorkoutLogsInput;
+}
+
+export interface UserUpdateOneRequiredWithoutWorkoutLogsInput {
+  create?: UserCreateWithoutWorkoutLogsInput;
+  update?: UserUpdateWithoutWorkoutLogsDataInput;
+  upsert?: UserUpsertWithoutWorkoutLogsInput;
+  connect?: UserWhereUniqueInput;
+}
+
+export interface UserUpdateWithoutWorkoutLogsDataInput {
+  name?: String;
+  email?: String;
+  password?: String;
+  deletedAt?: DateTimeInput;
+  profile?: ProfileUpdateOneInput;
+}
+
+export interface UserUpsertWithoutWorkoutLogsInput {
+  update: UserUpdateWithoutWorkoutLogsDataInput;
+  create: UserCreateWithoutWorkoutLogsInput;
+}
+
+export interface WorkoutLogUpsertWithoutExerciseLogsInput {
+  update: WorkoutLogUpdateWithoutExerciseLogsDataInput;
+  create: WorkoutLogCreateWithoutExerciseLogsInput;
+}
+
+export interface ExerciseLogUpdateManyMutationInput {
+  set?: Int;
+  reps?: Int;
+  weight?: Float;
+}
+
+export interface ExerciseRoutineUpdateInput {
+  sets?: Int;
+  reps?: Int;
+  restBetweenSets?: Int;
+}
+
+export interface ExerciseRoutineUpdateManyMutationInput {
+  sets?: Int;
+  reps?: Int;
+  restBetweenSets?: Int;
+}
+
+export interface ProfileUpdateInput {
+  bodyWeight?: Float;
+  age?: Int;
+  birthday?: DateTimeInput;
+}
+
+export interface ProfileUpdateManyMutationInput {
+  bodyWeight?: Float;
+  age?: Int;
+  birthday?: DateTimeInput;
+}
+
+export interface ProgramUpdateInput {
+  name?: String;
+  deletedAt?: DateTimeInput;
+  workouts?: WorkoutUpdateManyInput;
+  owner?: UserUpdateOneRequiredInput;
+}
+
+export interface ProgramUpdateManyMutationInput {
+  name?: String;
+  deletedAt?: DateTimeInput;
 }
 
 export interface UserUpdateInput {
   name?: String;
+  email?: String;
+  password?: String;
+  deletedAt?: DateTimeInput;
+  workoutLogs?: WorkoutLogUpdateManyWithoutUserInput;
+  profile?: ProfileUpdateOneInput;
 }
 
 export interface UserUpdateManyMutationInput {
   name?: String;
+  email?: String;
+  password?: String;
+  deletedAt?: DateTimeInput;
+}
+
+export interface WorkoutUpdateInput {
+  name?: String;
+  weekDay?: WeekDay;
+  deletedAt?: DateTimeInput;
+  exercises?: WorkoutRoutineUpdateManyInput;
+  author?: UserUpdateOneRequiredInput;
+}
+
+export interface WorkoutUpdateManyMutationInput {
+  name?: String;
+  weekDay?: WeekDay;
+  deletedAt?: DateTimeInput;
+}
+
+export interface WorkoutLogCreateInput {
+  workout: WorkoutCreateOneInput;
+  program: ProgramCreateOneInput;
+  notes?: String;
+  user: UserCreateOneWithoutWorkoutLogsInput;
+  exerciseLogs?: ExerciseLogCreateManyWithoutWorkoutLogInput;
+}
+
+export interface WorkoutLogUpdateInput {
+  workout?: WorkoutUpdateOneRequiredInput;
+  program?: ProgramUpdateOneRequiredInput;
+  notes?: String;
+  user?: UserUpdateOneRequiredWithoutWorkoutLogsInput;
+  exerciseLogs?: ExerciseLogUpdateManyWithoutWorkoutLogInput;
+}
+
+export interface WorkoutLogUpdateManyMutationInput {
+  notes?: String;
+}
+
+export interface WorkoutRoutineUpdateInput {
+  exercise?: ExerciseUpdateOneRequiredInput;
+  order?: Int;
+}
+
+export interface WorkoutRoutineUpdateManyMutationInput {
+  order?: Int;
+}
+
+export interface ExerciseSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ExerciseWhereInput;
+  AND?: ExerciseSubscriptionWhereInput[] | ExerciseSubscriptionWhereInput;
+  OR?: ExerciseSubscriptionWhereInput[] | ExerciseSubscriptionWhereInput;
+  NOT?: ExerciseSubscriptionWhereInput[] | ExerciseSubscriptionWhereInput;
+}
+
+export interface ExerciseLogSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ExerciseLogWhereInput;
+  AND?: ExerciseLogSubscriptionWhereInput[] | ExerciseLogSubscriptionWhereInput;
+  OR?: ExerciseLogSubscriptionWhereInput[] | ExerciseLogSubscriptionWhereInput;
+  NOT?: ExerciseLogSubscriptionWhereInput[] | ExerciseLogSubscriptionWhereInput;
+}
+
+export interface ExerciseRoutineSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ExerciseRoutineWhereInput;
+  AND?:
+    | ExerciseRoutineSubscriptionWhereInput[]
+    | ExerciseRoutineSubscriptionWhereInput;
+  OR?:
+    | ExerciseRoutineSubscriptionWhereInput[]
+    | ExerciseRoutineSubscriptionWhereInput;
+  NOT?:
+    | ExerciseRoutineSubscriptionWhereInput[]
+    | ExerciseRoutineSubscriptionWhereInput;
+}
+
+export interface ProfileSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ProfileWhereInput;
+  AND?: ProfileSubscriptionWhereInput[] | ProfileSubscriptionWhereInput;
+  OR?: ProfileSubscriptionWhereInput[] | ProfileSubscriptionWhereInput;
+  NOT?: ProfileSubscriptionWhereInput[] | ProfileSubscriptionWhereInput;
+}
+
+export interface ProgramSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: ProgramWhereInput;
+  AND?: ProgramSubscriptionWhereInput[] | ProgramSubscriptionWhereInput;
+  OR?: ProgramSubscriptionWhereInput[] | ProgramSubscriptionWhereInput;
+  NOT?: ProgramSubscriptionWhereInput[] | ProgramSubscriptionWhereInput;
 }
 
 export interface UserSubscriptionWhereInput {
@@ -176,18 +2068,146 @@ export interface UserSubscriptionWhereInput {
   NOT?: UserSubscriptionWhereInput[] | UserSubscriptionWhereInput;
 }
 
+export interface WorkoutSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: WorkoutWhereInput;
+  AND?: WorkoutSubscriptionWhereInput[] | WorkoutSubscriptionWhereInput;
+  OR?: WorkoutSubscriptionWhereInput[] | WorkoutSubscriptionWhereInput;
+  NOT?: WorkoutSubscriptionWhereInput[] | WorkoutSubscriptionWhereInput;
+}
+
+export interface WorkoutLogSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: WorkoutLogWhereInput;
+  AND?: WorkoutLogSubscriptionWhereInput[] | WorkoutLogSubscriptionWhereInput;
+  OR?: WorkoutLogSubscriptionWhereInput[] | WorkoutLogSubscriptionWhereInput;
+  NOT?: WorkoutLogSubscriptionWhereInput[] | WorkoutLogSubscriptionWhereInput;
+}
+
+export interface WorkoutRoutineSubscriptionWhereInput {
+  mutation_in?: MutationType[] | MutationType;
+  updatedFields_contains?: String;
+  updatedFields_contains_every?: String[] | String;
+  updatedFields_contains_some?: String[] | String;
+  node?: WorkoutRoutineWhereInput;
+  AND?:
+    | WorkoutRoutineSubscriptionWhereInput[]
+    | WorkoutRoutineSubscriptionWhereInput;
+  OR?:
+    | WorkoutRoutineSubscriptionWhereInput[]
+    | WorkoutRoutineSubscriptionWhereInput;
+  NOT?:
+    | WorkoutRoutineSubscriptionWhereInput[]
+    | WorkoutRoutineSubscriptionWhereInput;
+}
+
 export interface NodeNode {
   id: ID_Output;
+}
+
+export interface Exercise {
+  id: ID_Output;
+  name: String;
+  videoUrl?: String;
+  isProgressive?: Boolean;
+  warmup?: String;
+  weightProgression?: Float;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  deletedAt?: DateTimeOutput;
+}
+
+export interface ExercisePromise extends Promise<Exercise>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  videoUrl: () => Promise<String>;
+  isProgressive: () => Promise<Boolean>;
+  warmup: () => Promise<String>;
+  routine: <T = ExerciseRoutinePromise>() => T;
+  weightProgression: () => Promise<Float>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  deletedAt: () => Promise<DateTimeOutput>;
+  author: <T = UserPromise>() => T;
+}
+
+export interface ExerciseSubscription
+  extends Promise<AsyncIterator<Exercise>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  videoUrl: () => Promise<AsyncIterator<String>>;
+  isProgressive: () => Promise<AsyncIterator<Boolean>>;
+  warmup: () => Promise<AsyncIterator<String>>;
+  routine: <T = ExerciseRoutineSubscription>() => T;
+  weightProgression: () => Promise<AsyncIterator<Float>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  deletedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  author: <T = UserSubscription>() => T;
+}
+
+export interface ExerciseRoutine {
+  id: ID_Output;
+  sets: Int;
+  reps: Int;
+  restBetweenSets: Int;
+}
+
+export interface ExerciseRoutinePromise
+  extends Promise<ExerciseRoutine>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  sets: () => Promise<Int>;
+  reps: () => Promise<Int>;
+  restBetweenSets: () => Promise<Int>;
+}
+
+export interface ExerciseRoutineSubscription
+  extends Promise<AsyncIterator<ExerciseRoutine>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  sets: () => Promise<AsyncIterator<Int>>;
+  reps: () => Promise<AsyncIterator<Int>>;
+  restBetweenSets: () => Promise<AsyncIterator<Int>>;
 }
 
 export interface User {
   id: ID_Output;
   name: String;
+  email: String;
+  password: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  deletedAt?: DateTimeOutput;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  email: () => Promise<String>;
+  password: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  deletedAt: () => Promise<DateTimeOutput>;
+  workoutLogs: <T = FragmentableArray<WorkoutLog>>(
+    args?: {
+      where?: WorkoutLogWhereInput;
+      orderBy?: WorkoutLogOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  profile: <T = ProfilePromise>() => T;
 }
 
 export interface UserSubscription
@@ -195,27 +2215,269 @@ export interface UserSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  deletedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  workoutLogs: <T = Promise<AsyncIterator<WorkoutLogSubscription>>>(
+    args?: {
+      where?: WorkoutLogWhereInput;
+      orderBy?: WorkoutLogOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  profile: <T = ProfileSubscription>() => T;
 }
 
-export interface UserConnection {
+export interface WorkoutLog {
+  id: ID_Output;
+  notes?: String;
+  createdAt: DateTimeOutput;
+}
+
+export interface WorkoutLogPromise extends Promise<WorkoutLog>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  workout: <T = WorkoutPromise>() => T;
+  program: <T = ProgramPromise>() => T;
+  notes: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  user: <T = UserPromise>() => T;
+  exerciseLogs: <T = FragmentableArray<ExerciseLog>>(
+    args?: {
+      where?: ExerciseLogWhereInput;
+      orderBy?: ExerciseLogOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface WorkoutLogSubscription
+  extends Promise<AsyncIterator<WorkoutLog>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  workout: <T = WorkoutSubscription>() => T;
+  program: <T = ProgramSubscription>() => T;
+  notes: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  user: <T = UserSubscription>() => T;
+  exerciseLogs: <T = Promise<AsyncIterator<ExerciseLogSubscription>>>(
+    args?: {
+      where?: ExerciseLogWhereInput;
+      orderBy?: ExerciseLogOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+}
+
+export interface Workout {
+  id: ID_Output;
+  name: String;
+  weekDay: WeekDay;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  deletedAt?: DateTimeOutput;
+}
+
+export interface WorkoutPromise extends Promise<Workout>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  weekDay: () => Promise<WeekDay>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  deletedAt: () => Promise<DateTimeOutput>;
+  exercises: <T = FragmentableArray<WorkoutRoutine>>(
+    args?: {
+      where?: WorkoutRoutineWhereInput;
+      orderBy?: WorkoutRoutineOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  author: <T = UserPromise>() => T;
+}
+
+export interface WorkoutSubscription
+  extends Promise<AsyncIterator<Workout>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  weekDay: () => Promise<AsyncIterator<WeekDay>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  deletedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  exercises: <T = Promise<AsyncIterator<WorkoutRoutineSubscription>>>(
+    args?: {
+      where?: WorkoutRoutineWhereInput;
+      orderBy?: WorkoutRoutineOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  author: <T = UserSubscription>() => T;
+}
+
+export interface WorkoutRoutine {
+  id: ID_Output;
+  order: Int;
+}
+
+export interface WorkoutRoutinePromise
+  extends Promise<WorkoutRoutine>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  exercise: <T = ExercisePromise>() => T;
+  order: () => Promise<Int>;
+}
+
+export interface WorkoutRoutineSubscription
+  extends Promise<AsyncIterator<WorkoutRoutine>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  exercise: <T = ExerciseSubscription>() => T;
+  order: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface Program {
+  id: ID_Output;
+  name: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  deletedAt?: DateTimeOutput;
+}
+
+export interface ProgramPromise extends Promise<Program>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  deletedAt: () => Promise<DateTimeOutput>;
+  workouts: <T = FragmentableArray<Workout>>(
+    args?: {
+      where?: WorkoutWhereInput;
+      orderBy?: WorkoutOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  owner: <T = UserPromise>() => T;
+}
+
+export interface ProgramSubscription
+  extends Promise<AsyncIterator<Program>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  deletedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  workouts: <T = Promise<AsyncIterator<WorkoutSubscription>>>(
+    args?: {
+      where?: WorkoutWhereInput;
+      orderBy?: WorkoutOrderByInput;
+      skip?: Int;
+      after?: String;
+      before?: String;
+      first?: Int;
+      last?: Int;
+    }
+  ) => T;
+  owner: <T = UserSubscription>() => T;
+}
+
+export interface ExerciseLog {
+  id: ID_Output;
+  set: Int;
+  reps: Int;
+  weight?: Float;
+  createdAt: DateTimeOutput;
+}
+
+export interface ExerciseLogPromise extends Promise<ExerciseLog>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  set: () => Promise<Int>;
+  reps: () => Promise<Int>;
+  weight: () => Promise<Float>;
+  exercise: <T = ExercisePromise>() => T;
+  createdAt: () => Promise<DateTimeOutput>;
+  workoutLog: <T = WorkoutLogPromise>() => T;
+}
+
+export interface ExerciseLogSubscription
+  extends Promise<AsyncIterator<ExerciseLog>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  set: () => Promise<AsyncIterator<Int>>;
+  reps: () => Promise<AsyncIterator<Int>>;
+  weight: () => Promise<AsyncIterator<Float>>;
+  exercise: <T = ExerciseSubscription>() => T;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  workoutLog: <T = WorkoutLogSubscription>() => T;
+}
+
+export interface Profile {
+  id: ID_Output;
+  bodyWeight?: Float;
+  age?: Int;
+  birthday?: DateTimeOutput;
+}
+
+export interface ProfilePromise extends Promise<Profile>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  bodyWeight: () => Promise<Float>;
+  age: () => Promise<Int>;
+  birthday: () => Promise<DateTimeOutput>;
+}
+
+export interface ProfileSubscription
+  extends Promise<AsyncIterator<Profile>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  bodyWeight: () => Promise<AsyncIterator<Float>>;
+  age: () => Promise<AsyncIterator<Int>>;
+  birthday: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface ExerciseConnection {
   pageInfo: PageInfo;
-  edges: UserEdge[];
+  edges: ExerciseEdge[];
 }
 
-export interface UserConnectionPromise
-  extends Promise<UserConnection>,
+export interface ExerciseConnectionPromise
+  extends Promise<ExerciseConnection>,
     Fragmentable {
   pageInfo: <T = PageInfoPromise>() => T;
-  edges: <T = FragmentableArray<UserEdge>>() => T;
-  aggregate: <T = AggregateUserPromise>() => T;
+  edges: <T = FragmentableArray<ExerciseEdge>>() => T;
+  aggregate: <T = AggregateExercisePromise>() => T;
 }
 
-export interface UserConnectionSubscription
-  extends Promise<AsyncIterator<UserConnection>>,
+export interface ExerciseConnectionSubscription
+  extends Promise<AsyncIterator<ExerciseConnection>>,
     Fragmentable {
   pageInfo: <T = PageInfoSubscription>() => T;
-  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
-  aggregate: <T = AggregateUserSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ExerciseEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateExerciseSubscription>() => T;
 }
 
 export interface PageInfo {
@@ -239,6 +2501,282 @@ export interface PageInfoSubscription
   hasPreviousPage: () => Promise<AsyncIterator<Boolean>>;
   startCursor: () => Promise<AsyncIterator<String>>;
   endCursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface ExerciseEdge {
+  node: Exercise;
+  cursor: String;
+}
+
+export interface ExerciseEdgePromise
+  extends Promise<ExerciseEdge>,
+    Fragmentable {
+  node: <T = ExercisePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ExerciseEdgeSubscription
+  extends Promise<AsyncIterator<ExerciseEdge>>,
+    Fragmentable {
+  node: <T = ExerciseSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateExercise {
+  count: Int;
+}
+
+export interface AggregateExercisePromise
+  extends Promise<AggregateExercise>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateExerciseSubscription
+  extends Promise<AsyncIterator<AggregateExercise>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ExerciseLogConnection {
+  pageInfo: PageInfo;
+  edges: ExerciseLogEdge[];
+}
+
+export interface ExerciseLogConnectionPromise
+  extends Promise<ExerciseLogConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ExerciseLogEdge>>() => T;
+  aggregate: <T = AggregateExerciseLogPromise>() => T;
+}
+
+export interface ExerciseLogConnectionSubscription
+  extends Promise<AsyncIterator<ExerciseLogConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ExerciseLogEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateExerciseLogSubscription>() => T;
+}
+
+export interface ExerciseLogEdge {
+  node: ExerciseLog;
+  cursor: String;
+}
+
+export interface ExerciseLogEdgePromise
+  extends Promise<ExerciseLogEdge>,
+    Fragmentable {
+  node: <T = ExerciseLogPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ExerciseLogEdgeSubscription
+  extends Promise<AsyncIterator<ExerciseLogEdge>>,
+    Fragmentable {
+  node: <T = ExerciseLogSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateExerciseLog {
+  count: Int;
+}
+
+export interface AggregateExerciseLogPromise
+  extends Promise<AggregateExerciseLog>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateExerciseLogSubscription
+  extends Promise<AsyncIterator<AggregateExerciseLog>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ExerciseRoutineConnection {
+  pageInfo: PageInfo;
+  edges: ExerciseRoutineEdge[];
+}
+
+export interface ExerciseRoutineConnectionPromise
+  extends Promise<ExerciseRoutineConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ExerciseRoutineEdge>>() => T;
+  aggregate: <T = AggregateExerciseRoutinePromise>() => T;
+}
+
+export interface ExerciseRoutineConnectionSubscription
+  extends Promise<AsyncIterator<ExerciseRoutineConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ExerciseRoutineEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateExerciseRoutineSubscription>() => T;
+}
+
+export interface ExerciseRoutineEdge {
+  node: ExerciseRoutine;
+  cursor: String;
+}
+
+export interface ExerciseRoutineEdgePromise
+  extends Promise<ExerciseRoutineEdge>,
+    Fragmentable {
+  node: <T = ExerciseRoutinePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ExerciseRoutineEdgeSubscription
+  extends Promise<AsyncIterator<ExerciseRoutineEdge>>,
+    Fragmentable {
+  node: <T = ExerciseRoutineSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateExerciseRoutine {
+  count: Int;
+}
+
+export interface AggregateExerciseRoutinePromise
+  extends Promise<AggregateExerciseRoutine>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateExerciseRoutineSubscription
+  extends Promise<AsyncIterator<AggregateExerciseRoutine>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ProfileConnection {
+  pageInfo: PageInfo;
+  edges: ProfileEdge[];
+}
+
+export interface ProfileConnectionPromise
+  extends Promise<ProfileConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ProfileEdge>>() => T;
+  aggregate: <T = AggregateProfilePromise>() => T;
+}
+
+export interface ProfileConnectionSubscription
+  extends Promise<AsyncIterator<ProfileConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ProfileEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateProfileSubscription>() => T;
+}
+
+export interface ProfileEdge {
+  node: Profile;
+  cursor: String;
+}
+
+export interface ProfileEdgePromise extends Promise<ProfileEdge>, Fragmentable {
+  node: <T = ProfilePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ProfileEdgeSubscription
+  extends Promise<AsyncIterator<ProfileEdge>>,
+    Fragmentable {
+  node: <T = ProfileSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateProfile {
+  count: Int;
+}
+
+export interface AggregateProfilePromise
+  extends Promise<AggregateProfile>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateProfileSubscription
+  extends Promise<AsyncIterator<AggregateProfile>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ProgramConnection {
+  pageInfo: PageInfo;
+  edges: ProgramEdge[];
+}
+
+export interface ProgramConnectionPromise
+  extends Promise<ProgramConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<ProgramEdge>>() => T;
+  aggregate: <T = AggregateProgramPromise>() => T;
+}
+
+export interface ProgramConnectionSubscription
+  extends Promise<AsyncIterator<ProgramConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<ProgramEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateProgramSubscription>() => T;
+}
+
+export interface ProgramEdge {
+  node: Program;
+  cursor: String;
+}
+
+export interface ProgramEdgePromise extends Promise<ProgramEdge>, Fragmentable {
+  node: <T = ProgramPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface ProgramEdgeSubscription
+  extends Promise<AsyncIterator<ProgramEdge>>,
+    Fragmentable {
+  node: <T = ProgramSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateProgram {
+  count: Int;
+}
+
+export interface AggregateProgramPromise
+  extends Promise<AggregateProgram>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateProgramSubscription
+  extends Promise<AsyncIterator<AggregateProgram>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface UserConnection {
+  pageInfo: PageInfo;
+  edges: UserEdge[];
+}
+
+export interface UserConnectionPromise
+  extends Promise<UserConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<UserEdge>>() => T;
+  aggregate: <T = AggregateUserPromise>() => T;
+}
+
+export interface UserConnectionSubscription
+  extends Promise<AsyncIterator<UserConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<UserEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateUserSubscription>() => T;
 }
 
 export interface UserEdge {
@@ -274,6 +2812,172 @@ export interface AggregateUserSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
+export interface WorkoutConnection {
+  pageInfo: PageInfo;
+  edges: WorkoutEdge[];
+}
+
+export interface WorkoutConnectionPromise
+  extends Promise<WorkoutConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<WorkoutEdge>>() => T;
+  aggregate: <T = AggregateWorkoutPromise>() => T;
+}
+
+export interface WorkoutConnectionSubscription
+  extends Promise<AsyncIterator<WorkoutConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<WorkoutEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateWorkoutSubscription>() => T;
+}
+
+export interface WorkoutEdge {
+  node: Workout;
+  cursor: String;
+}
+
+export interface WorkoutEdgePromise extends Promise<WorkoutEdge>, Fragmentable {
+  node: <T = WorkoutPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface WorkoutEdgeSubscription
+  extends Promise<AsyncIterator<WorkoutEdge>>,
+    Fragmentable {
+  node: <T = WorkoutSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateWorkout {
+  count: Int;
+}
+
+export interface AggregateWorkoutPromise
+  extends Promise<AggregateWorkout>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateWorkoutSubscription
+  extends Promise<AsyncIterator<AggregateWorkout>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface WorkoutLogConnection {
+  pageInfo: PageInfo;
+  edges: WorkoutLogEdge[];
+}
+
+export interface WorkoutLogConnectionPromise
+  extends Promise<WorkoutLogConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<WorkoutLogEdge>>() => T;
+  aggregate: <T = AggregateWorkoutLogPromise>() => T;
+}
+
+export interface WorkoutLogConnectionSubscription
+  extends Promise<AsyncIterator<WorkoutLogConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<WorkoutLogEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateWorkoutLogSubscription>() => T;
+}
+
+export interface WorkoutLogEdge {
+  node: WorkoutLog;
+  cursor: String;
+}
+
+export interface WorkoutLogEdgePromise
+  extends Promise<WorkoutLogEdge>,
+    Fragmentable {
+  node: <T = WorkoutLogPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface WorkoutLogEdgeSubscription
+  extends Promise<AsyncIterator<WorkoutLogEdge>>,
+    Fragmentable {
+  node: <T = WorkoutLogSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateWorkoutLog {
+  count: Int;
+}
+
+export interface AggregateWorkoutLogPromise
+  extends Promise<AggregateWorkoutLog>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateWorkoutLogSubscription
+  extends Promise<AsyncIterator<AggregateWorkoutLog>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface WorkoutRoutineConnection {
+  pageInfo: PageInfo;
+  edges: WorkoutRoutineEdge[];
+}
+
+export interface WorkoutRoutineConnectionPromise
+  extends Promise<WorkoutRoutineConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<WorkoutRoutineEdge>>() => T;
+  aggregate: <T = AggregateWorkoutRoutinePromise>() => T;
+}
+
+export interface WorkoutRoutineConnectionSubscription
+  extends Promise<AsyncIterator<WorkoutRoutineConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<WorkoutRoutineEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateWorkoutRoutineSubscription>() => T;
+}
+
+export interface WorkoutRoutineEdge {
+  node: WorkoutRoutine;
+  cursor: String;
+}
+
+export interface WorkoutRoutineEdgePromise
+  extends Promise<WorkoutRoutineEdge>,
+    Fragmentable {
+  node: <T = WorkoutRoutinePromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface WorkoutRoutineEdgeSubscription
+  extends Promise<AsyncIterator<WorkoutRoutineEdge>>,
+    Fragmentable {
+  node: <T = WorkoutRoutineSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateWorkoutRoutine {
+  count: Int;
+}
+
+export interface AggregateWorkoutRoutinePromise
+  extends Promise<AggregateWorkoutRoutine>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateWorkoutRoutineSubscription
+  extends Promise<AsyncIterator<AggregateWorkoutRoutine>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
 export interface BatchPayload {
   count: Long;
 }
@@ -288,6 +2992,277 @@ export interface BatchPayloadSubscription
   extends Promise<AsyncIterator<BatchPayload>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Long>>;
+}
+
+export interface ExerciseSubscriptionPayload {
+  mutation: MutationType;
+  node: Exercise;
+  updatedFields: String[];
+  previousValues: ExercisePreviousValues;
+}
+
+export interface ExerciseSubscriptionPayloadPromise
+  extends Promise<ExerciseSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ExercisePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ExercisePreviousValuesPromise>() => T;
+}
+
+export interface ExerciseSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ExerciseSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ExerciseSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ExercisePreviousValuesSubscription>() => T;
+}
+
+export interface ExercisePreviousValues {
+  id: ID_Output;
+  name: String;
+  videoUrl?: String;
+  isProgressive?: Boolean;
+  warmup?: String;
+  weightProgression?: Float;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  deletedAt?: DateTimeOutput;
+}
+
+export interface ExercisePreviousValuesPromise
+  extends Promise<ExercisePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  videoUrl: () => Promise<String>;
+  isProgressive: () => Promise<Boolean>;
+  warmup: () => Promise<String>;
+  weightProgression: () => Promise<Float>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  deletedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface ExercisePreviousValuesSubscription
+  extends Promise<AsyncIterator<ExercisePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  videoUrl: () => Promise<AsyncIterator<String>>;
+  isProgressive: () => Promise<AsyncIterator<Boolean>>;
+  warmup: () => Promise<AsyncIterator<String>>;
+  weightProgression: () => Promise<AsyncIterator<Float>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  deletedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface ExerciseLogSubscriptionPayload {
+  mutation: MutationType;
+  node: ExerciseLog;
+  updatedFields: String[];
+  previousValues: ExerciseLogPreviousValues;
+}
+
+export interface ExerciseLogSubscriptionPayloadPromise
+  extends Promise<ExerciseLogSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ExerciseLogPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ExerciseLogPreviousValuesPromise>() => T;
+}
+
+export interface ExerciseLogSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ExerciseLogSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ExerciseLogSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ExerciseLogPreviousValuesSubscription>() => T;
+}
+
+export interface ExerciseLogPreviousValues {
+  id: ID_Output;
+  set: Int;
+  reps: Int;
+  weight?: Float;
+  createdAt: DateTimeOutput;
+}
+
+export interface ExerciseLogPreviousValuesPromise
+  extends Promise<ExerciseLogPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  set: () => Promise<Int>;
+  reps: () => Promise<Int>;
+  weight: () => Promise<Float>;
+  createdAt: () => Promise<DateTimeOutput>;
+}
+
+export interface ExerciseLogPreviousValuesSubscription
+  extends Promise<AsyncIterator<ExerciseLogPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  set: () => Promise<AsyncIterator<Int>>;
+  reps: () => Promise<AsyncIterator<Int>>;
+  weight: () => Promise<AsyncIterator<Float>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface ExerciseRoutineSubscriptionPayload {
+  mutation: MutationType;
+  node: ExerciseRoutine;
+  updatedFields: String[];
+  previousValues: ExerciseRoutinePreviousValues;
+}
+
+export interface ExerciseRoutineSubscriptionPayloadPromise
+  extends Promise<ExerciseRoutineSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ExerciseRoutinePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ExerciseRoutinePreviousValuesPromise>() => T;
+}
+
+export interface ExerciseRoutineSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ExerciseRoutineSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ExerciseRoutineSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ExerciseRoutinePreviousValuesSubscription>() => T;
+}
+
+export interface ExerciseRoutinePreviousValues {
+  id: ID_Output;
+  sets: Int;
+  reps: Int;
+  restBetweenSets: Int;
+}
+
+export interface ExerciseRoutinePreviousValuesPromise
+  extends Promise<ExerciseRoutinePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  sets: () => Promise<Int>;
+  reps: () => Promise<Int>;
+  restBetweenSets: () => Promise<Int>;
+}
+
+export interface ExerciseRoutinePreviousValuesSubscription
+  extends Promise<AsyncIterator<ExerciseRoutinePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  sets: () => Promise<AsyncIterator<Int>>;
+  reps: () => Promise<AsyncIterator<Int>>;
+  restBetweenSets: () => Promise<AsyncIterator<Int>>;
+}
+
+export interface ProfileSubscriptionPayload {
+  mutation: MutationType;
+  node: Profile;
+  updatedFields: String[];
+  previousValues: ProfilePreviousValues;
+}
+
+export interface ProfileSubscriptionPayloadPromise
+  extends Promise<ProfileSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ProfilePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ProfilePreviousValuesPromise>() => T;
+}
+
+export interface ProfileSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ProfileSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ProfileSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ProfilePreviousValuesSubscription>() => T;
+}
+
+export interface ProfilePreviousValues {
+  id: ID_Output;
+  bodyWeight?: Float;
+  age?: Int;
+  birthday?: DateTimeOutput;
+}
+
+export interface ProfilePreviousValuesPromise
+  extends Promise<ProfilePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  bodyWeight: () => Promise<Float>;
+  age: () => Promise<Int>;
+  birthday: () => Promise<DateTimeOutput>;
+}
+
+export interface ProfilePreviousValuesSubscription
+  extends Promise<AsyncIterator<ProfilePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  bodyWeight: () => Promise<AsyncIterator<Float>>;
+  age: () => Promise<AsyncIterator<Int>>;
+  birthday: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface ProgramSubscriptionPayload {
+  mutation: MutationType;
+  node: Program;
+  updatedFields: String[];
+  previousValues: ProgramPreviousValues;
+}
+
+export interface ProgramSubscriptionPayloadPromise
+  extends Promise<ProgramSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = ProgramPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = ProgramPreviousValuesPromise>() => T;
+}
+
+export interface ProgramSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<ProgramSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = ProgramSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = ProgramPreviousValuesSubscription>() => T;
+}
+
+export interface ProgramPreviousValues {
+  id: ID_Output;
+  name: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  deletedAt?: DateTimeOutput;
+}
+
+export interface ProgramPreviousValuesPromise
+  extends Promise<ProgramPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  deletedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface ProgramPreviousValuesSubscription
+  extends Promise<AsyncIterator<ProgramPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  deletedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
 
 export interface UserSubscriptionPayload {
@@ -318,6 +3293,11 @@ export interface UserSubscriptionPayloadSubscription
 export interface UserPreviousValues {
   id: ID_Output;
   name: String;
+  email: String;
+  password: String;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  deletedAt?: DateTimeOutput;
 }
 
 export interface UserPreviousValuesPromise
@@ -325,6 +3305,11 @@ export interface UserPreviousValuesPromise
     Fragmentable {
   id: () => Promise<ID_Output>;
   name: () => Promise<String>;
+  email: () => Promise<String>;
+  password: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  deletedAt: () => Promise<DateTimeOutput>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -332,6 +3317,158 @@ export interface UserPreviousValuesSubscription
     Fragmentable {
   id: () => Promise<AsyncIterator<ID_Output>>;
   name: () => Promise<AsyncIterator<String>>;
+  email: () => Promise<AsyncIterator<String>>;
+  password: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  deletedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface WorkoutSubscriptionPayload {
+  mutation: MutationType;
+  node: Workout;
+  updatedFields: String[];
+  previousValues: WorkoutPreviousValues;
+}
+
+export interface WorkoutSubscriptionPayloadPromise
+  extends Promise<WorkoutSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = WorkoutPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = WorkoutPreviousValuesPromise>() => T;
+}
+
+export interface WorkoutSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<WorkoutSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = WorkoutSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = WorkoutPreviousValuesSubscription>() => T;
+}
+
+export interface WorkoutPreviousValues {
+  id: ID_Output;
+  name: String;
+  weekDay: WeekDay;
+  createdAt: DateTimeOutput;
+  updatedAt: DateTimeOutput;
+  deletedAt?: DateTimeOutput;
+}
+
+export interface WorkoutPreviousValuesPromise
+  extends Promise<WorkoutPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  name: () => Promise<String>;
+  weekDay: () => Promise<WeekDay>;
+  createdAt: () => Promise<DateTimeOutput>;
+  updatedAt: () => Promise<DateTimeOutput>;
+  deletedAt: () => Promise<DateTimeOutput>;
+}
+
+export interface WorkoutPreviousValuesSubscription
+  extends Promise<AsyncIterator<WorkoutPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  name: () => Promise<AsyncIterator<String>>;
+  weekDay: () => Promise<AsyncIterator<WeekDay>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+  deletedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface WorkoutLogSubscriptionPayload {
+  mutation: MutationType;
+  node: WorkoutLog;
+  updatedFields: String[];
+  previousValues: WorkoutLogPreviousValues;
+}
+
+export interface WorkoutLogSubscriptionPayloadPromise
+  extends Promise<WorkoutLogSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = WorkoutLogPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = WorkoutLogPreviousValuesPromise>() => T;
+}
+
+export interface WorkoutLogSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<WorkoutLogSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = WorkoutLogSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = WorkoutLogPreviousValuesSubscription>() => T;
+}
+
+export interface WorkoutLogPreviousValues {
+  id: ID_Output;
+  notes?: String;
+  createdAt: DateTimeOutput;
+}
+
+export interface WorkoutLogPreviousValuesPromise
+  extends Promise<WorkoutLogPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  notes: () => Promise<String>;
+  createdAt: () => Promise<DateTimeOutput>;
+}
+
+export interface WorkoutLogPreviousValuesSubscription
+  extends Promise<AsyncIterator<WorkoutLogPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  notes: () => Promise<AsyncIterator<String>>;
+  createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
+}
+
+export interface WorkoutRoutineSubscriptionPayload {
+  mutation: MutationType;
+  node: WorkoutRoutine;
+  updatedFields: String[];
+  previousValues: WorkoutRoutinePreviousValues;
+}
+
+export interface WorkoutRoutineSubscriptionPayloadPromise
+  extends Promise<WorkoutRoutineSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = WorkoutRoutinePromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = WorkoutRoutinePreviousValuesPromise>() => T;
+}
+
+export interface WorkoutRoutineSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<WorkoutRoutineSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = WorkoutRoutineSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = WorkoutRoutinePreviousValuesSubscription>() => T;
+}
+
+export interface WorkoutRoutinePreviousValues {
+  id: ID_Output;
+  order: Int;
+}
+
+export interface WorkoutRoutinePreviousValuesPromise
+  extends Promise<WorkoutRoutinePreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  order: () => Promise<Int>;
+}
+
+export interface WorkoutRoutinePreviousValuesSubscription
+  extends Promise<AsyncIterator<WorkoutRoutinePreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  order: () => Promise<AsyncIterator<Int>>;
 }
 
 /*
@@ -346,14 +3483,29 @@ The `String` scalar type represents textual data, represented as UTF-8 character
 export type String = string;
 
 /*
+The `Boolean` scalar type represents `true` or `false`.
+*/
+export type Boolean = boolean;
+
+/*
 The `Int` scalar type represents non-fractional signed whole numeric values. Int can represent values between -(2^31) and 2^31 - 1. 
 */
 export type Int = number;
 
 /*
-The `Boolean` scalar type represents `true` or `false`.
+The `Float` scalar type represents signed double-precision fractional values as specified by [IEEE 754](http://en.wikipedia.org/wiki/IEEE_floating_point). 
 */
-export type Boolean = boolean;
+export type Float = number;
+
+/*
+DateTime scalar input type, allowing Date
+*/
+export type DateTimeInput = Date | string;
+
+/*
+DateTime scalar output type, which is always a string
+*/
+export type DateTimeOutput = string;
 
 export type Long = string;
 
@@ -363,7 +3515,43 @@ export type Long = string;
 
 export const models: Model[] = [
   {
+    name: "Exercise",
+    embedded: false
+  },
+  {
+    name: "ExerciseLog",
+    embedded: false
+  },
+  {
+    name: "ExerciseRoutine",
+    embedded: false
+  },
+  {
+    name: "Profile",
+    embedded: false
+  },
+  {
+    name: "Program",
+    embedded: false
+  },
+  {
     name: "User",
+    embedded: false
+  },
+  {
+    name: "WeekDay",
+    embedded: false
+  },
+  {
+    name: "Workout",
+    embedded: false
+  },
+  {
+    name: "WorkoutLog",
+    embedded: false
+  },
+  {
+    name: "WorkoutRoutine",
     embedded: false
   }
 ];

@@ -1,4 +1,97 @@
 type User {
   id: ID! @unique
   name: String!
+  email: String! @unique
+  password: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  workoutLogs: [WorkoutLog]
+  profile: Profile
+}
+
+enum WeekDay {
+  Monday,
+  Tuesday,
+  Wednesday,
+  Thursday,
+  Friday,
+  Saturday,
+  Sunday,
+  Any
+}
+
+type Profile {
+  id: ID! @unique
+  bodyWeight: Float
+  age: Int
+  birthday: DateTime
+}
+
+type Workout {
+  id: ID! @unique
+  name: String!
+  weekDay: WeekDay!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  exercises: [WorkoutRoutine!]!
+  author: User!
+}
+
+type Exercise {
+  id: ID! @unique
+  name: String!
+  videoUrl: String
+  isProgressive: Boolean @default(value: "true")
+  warmup: String
+  routine: ExerciseRoutine!
+  weightProgression: Float
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  author: User!
+}
+
+type ExerciseRoutine {
+  id: ID! @unique
+  sets: Int! 
+  reps: Int!
+  restBetweenSets: Int! @default(value: "90")
+}
+
+type WorkoutRoutine {
+  id: ID! @unique
+  exercise: Exercise!
+  order: Int!
+}
+
+type Program {
+  id: ID! @unique
+  name: String!
+  createdAt: DateTime!
+  updatedAt: DateTime!
+  deletedAt: DateTime
+  workouts: [Workout!]!
+  owner: User!
+}
+
+type ExerciseLog {
+  id: ID! @unique
+  set: Int!
+  reps: Int!
+  weight: Float
+  exercise: Exercise!
+  createdAt: DateTime!
+  workoutLog: WorkoutLog!
+}
+
+type WorkoutLog {
+  id: ID! @unique
+  workout: Workout!
+  program: Program!
+  notes: String
+  createdAt: DateTime!
+  user: User!
+  exerciseLogs: [ExerciseLog!]!
 }
