@@ -1,25 +1,39 @@
 import { json } from 'body-parser';
 import * as cors from 'cors';
 import * as express from 'express';
-import { ApiV1UserRoutes } from './routes/api/v1/user';
-import { MainRoutes } from './routes/main';
+import IController from './lib/controller.interface';
+import { logger } from './lib/logger';
+import errorHandler from './middleware/error.handler';
+import UserController from './user/user.controller';
 
 class App {
 
   public app: express.Application;
-  public mainRoutes: MainRoutes = new MainRoutes();
-  public apiV1UserRoutes: ApiV1UserRoutes = new ApiV1UserRoutes();
 
   constructor() {
     this.app = express();
     this.config();
-    this.mainRoutes.routes(this.app);
-    this.apiV1UserRoutes.routes(this.app);
+    this.initControllers(
+      [
+        new UserController(),
+      ],
+    );
+    this.initErrorHandler();
   }
 
   private config(): void {
     this.app.use(cors());
     this.app.use(json());
+  }
+
+  private initControllers(controllers: IController[]): void {
+    controllers.forEach((controller) => {
+      this.app.use('/', controller.router);
+    });
+  }
+
+  private initErrorHandler(): void {
+    this.app.use(errorHandler);
   }
 }
 
