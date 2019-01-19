@@ -7,7 +7,7 @@ import IAuthToken from '../lib/interfaces/auth_token';
 import IController from '../lib/interfaces/controller';
 import { config } from '../lib/utils/config';
 
-export default class UserController implements IController {
+export default class AuthenticationController implements IController {
   public path = '/auth';
   public router = express.Router();
 
