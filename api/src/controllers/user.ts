@@ -14,12 +14,11 @@ export default class UserController implements IController {
   private initializeRoutes() {
     this.router
       .get(`${this.path}/:id`, this.find)
-      .post(this.path, this.create)
       .put(`${this.path}/:id`, this.update)
       .delete(`${this.path}/:id`, this.delete);
   }
 
-  private find = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  private find = async (req: express.Request, res: express.Response) => {
     const { id } = req.params;
     const fragment = `
     fragment UserDetail on User {
@@ -45,19 +44,7 @@ export default class UserController implements IController {
     res.json(users[0]);
   }
 
-  private create = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
-    const { name, email, password } = req.body;
-    const hash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
-    const user = await prisma.createUser({
-      email,
-      name,
-      password: hash,
-    });
-
-    res.status(201).json(user);
-  }
-
-  private update = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  private update = async (req: express.Request, res: express.Response) => {
     const { id } = req.params;
     const { name, email, password } = req.body;
     const hash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
@@ -69,7 +56,7 @@ export default class UserController implements IController {
     res.status(200).json(user);
   }
 
-  private delete = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  private delete = async (req: express.Request, res: express.Response) => {
     const { id } = req.params;
     const user = await prisma.updateUser({
       data: { deletedAt: new Date() },

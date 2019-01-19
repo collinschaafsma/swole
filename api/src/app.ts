@@ -1,6 +1,7 @@
 import { json } from 'body-parser';
 import * as cors from 'cors';
 import * as express from 'express';
+import AuthController from './controllers/authentication';
 import UserController from './controllers/user';
 import IController from './lib/interfaces/controller';
 import errorHandler from './middlewares/error_handler';
@@ -14,6 +15,7 @@ class App {
     this.config();
     this.initControllers(
       [
+        new AuthController(),
         new UserController(),
       ],
     );
