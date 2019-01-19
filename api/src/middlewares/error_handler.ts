@@ -1,7 +1,7 @@
 import { NextFunction, Request, Response } from 'express';
-import { config } from '../lib/config';
-import HttpException from '../lib/HttpException';
-import { logger } from '../lib/logger';
+import HttpException from '../lib/exceptions/http_exception';
+import { config } from '../lib/utils/config';
+import { logger } from '../lib/utils/logger';
 
 export default function errorHandler(error: HttpException, req: Request, res: Response, next: NextFunction) {
   const status = error.status || 500;

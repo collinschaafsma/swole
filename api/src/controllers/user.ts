@@ -1,7 +1,7 @@
 import * as bcrypt from 'bcryptjs';
 import * as express from 'express';
 import { prisma, User } from '../generated/prisma-client';
-import IController from '../lib/controller.interface';
+import IController from '../lib/interfaces/controller';
 
 export default class UserController implements IController {
   public path = '/api/v1/user';

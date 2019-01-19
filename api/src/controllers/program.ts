@@ -1,7 +1,7 @@
 import * as express from 'express';
 import { prisma } from '../generated/prisma-client';
-import IController from '../lib/controller.interface';
-import IUserRequest from '../lib/user_request.interface';
+import IController from '../lib/interfaces/controller';
+import IUserRequest from '../lib/interfaces/user_request';
 
 export default class ProgramController implements IController {
   public path = '/api/v1/program';

@@ -1,10 +1,9 @@
 import { json } from 'body-parser';
 import * as cors from 'cors';
 import * as express from 'express';
-import IController from './lib/controller.interface';
-import { logger } from './lib/logger';
-import errorHandler from './middleware/error.handler';
-import UserController from './user/user.controller';
+import UserController from './controllers/user';
+import IController from './lib/interfaces/controller';
+import errorHandler from './middlewares/error_handler';
 
 class App {
 
