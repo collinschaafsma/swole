@@ -2,6 +2,7 @@ import { json } from 'body-parser';
 import * as cors from 'cors';
 import * as express from 'express';
 import AuthenticationController from './controllers/authentication';
+import ProgramController from './controllers/program';
 import UserController from './controllers/user';
 import IController from './lib/interfaces/controller';
 import errorHandler from './middlewares/error_handler';
@@ -16,6 +17,7 @@ class App {
     this.initControllers(
       [
         new AuthenticationController(),
+        new ProgramController(),
         new UserController(),
       ],
     );

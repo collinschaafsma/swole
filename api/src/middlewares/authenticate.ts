@@ -5,6 +5,7 @@ import HttpException from '../lib/exceptions/http_exception';
 import IAuthToken from '../lib/interfaces/auth_token';
 import IUserRequest from '../lib/interfaces/user_request';
 import { config } from '../lib/utils/config';
+import { logger } from '../lib/utils/logger';
 
 export default async function authenticate(req: IUserRequest, res: Response, next: NextFunction) {
   const secret = config.jwtSecret;
@@ -21,12 +22,12 @@ export default async function authenticate(req: IUserRequest, res: Response, nex
         req.user = user;
         next();
       } else {
-        next(new HttpException(401, 'Bad token'));
+        next(new HttpException(401, 'No user with token'));
       }
     } catch (error) {
       next(new HttpException(401, 'Bad token'));
     }
   } else {
-    next(new HttpException(401, 'Bad token'));
+    next(new HttpException(401, 'Missing token'));
   }
 }

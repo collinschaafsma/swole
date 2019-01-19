@@ -58,6 +58,6 @@ export default class AuthenticationController implements IController {
       id: user.id,
     };
 
-    return jwt.sign({ tokenData }, secret, { expiresIn: '90d' }); // Expires in 90 days
+    return jwt.sign(tokenData, secret, { expiresIn: '90d' }); // Expires in 90 days
   }
 }

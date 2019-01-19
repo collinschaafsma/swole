@@ -14,12 +14,11 @@ export default class ProgramController implements IController {
 
   private initializeRoutes() {
     this.router
-      .all(`${this.path}/*`, authenticate)
-      .get(this.path, this.list)
-      .get(`${this.path}/:id`, this.find)
-      .post(this.path, this.create)
-      .put(`${this.path}/:id`, this.update)
-      .delete(`${this.path}/:id`, this.delete);
+      .get(this.path, authenticate, this.list)
+      .get(`${this.path}/:id`, authenticate, this.find)
+      .post(this.path, authenticate, this.create)
+      .put(`${this.path}/:id`, authenticate, this.update)
+      .delete(`${this.path}/:id`, authenticate, this.delete);
   }
 
   private list = async (req: express.Request, res: express.Response) => {

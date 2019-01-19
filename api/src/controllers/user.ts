@@ -2,6 +2,7 @@ import * as bcrypt from 'bcryptjs';
 import * as express from 'express';
 import { prisma } from '../generated/prisma-client';
 import IController from '../lib/interfaces/controller';
+import authenticate from '../middlewares/authenticate';
 
 export default class UserController implements IController {
   public path = '/api/v1/users';
@@ -13,9 +14,9 @@ export default class UserController implements IController {
 
   private initializeRoutes() {
     this.router
-      .get(`${this.path}/:id`, this.find)
-      .put(`${this.path}/:id`, this.update)
-      .delete(`${this.path}/:id`, this.delete);
+      .get(`${this.path}/:id`, authenticate, this.find)
+      .put(`${this.path}/:id`, authenticate, this.update)
+      .delete(`${this.path}/:id`, authenticate, this.delete);
   }
 
   private find = async (req: express.Request, res: express.Response) => {
