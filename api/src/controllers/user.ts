@@ -4,7 +4,7 @@ import { prisma, User } from '../generated/prisma-client';
 import IController from '../lib/interfaces/controller';
 
 export default class UserController implements IController {
-  public path = '/api/v1/user';
+  public path = '/api/v1/users';
   public router = express.Router();
 
   constructor() {

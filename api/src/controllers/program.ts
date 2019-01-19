@@ -4,7 +4,7 @@ import IController from '../lib/interfaces/controller';
 import IUserRequest from '../lib/interfaces/user_request';
 
 export default class ProgramController implements IController {
-  public path = '/api/v1/program';
+  public path = '/api/v1/programs';
   public router = express.Router();
 
   constructor() {
@@ -13,27 +13,39 @@ export default class ProgramController implements IController {
 
   private initializeRoutes() {
     this.router
+      .get(this.path, this.list)
       .get(`${this.path}/:id`, this.find)
       .post(this.path, this.create)
       .put(`${this.path}/:id`, this.update)
       .delete(`${this.path}/:id`, this.delete);
   }
 
+  private list = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+    const programs = await prisma
+      .programs({
+        orderBy: 'name_DESC',
+        where: {
+          deletedAt: null,
+        },
+      });
+
+    res.json(programs);
+  }
+
   private find = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
     const { id } = req.params;
-    const program = await prisma.user({ id });
+    const program = await prisma.program({ id });
 
     res.json(program);
   }
 
   private create = async (req: IUserRequest, res: express.Response, next: express.NextFunction) => {
-    const { name } = req.body;
-    const owner = req.user;
+    const { name, workouts } = req.body;
     const program = await prisma.createProgram({
       name,
       owner: {
         connect: {
-          id: owner.id,
+          id: req.user.id,
         },
       },
     });
@@ -45,7 +57,8 @@ export default class ProgramController implements IController {
     const { id } = req.params;
     const { name } = req.body;
     const programOwner = await prisma.program({ id }).owner();
-    if (programOwner.id === req.user.id) {
+
+    if (programOwner.id === req.user.id) { // They can update a program they own
       const program = await prisma.updateProgram({
         data: {
           name,
@@ -54,14 +67,15 @@ export default class ProgramController implements IController {
       });
       res.status(200).json(program);
     } else {
-      res.status(500).json({error: 'Not owner'});
+      res.status(401);
     }
   }
 
   private delete = async (req: IUserRequest, res: express.Response, next: express.NextFunction) => {
     const { id } = req.params;
     const programOwner = await prisma.program({ id }).owner();
-    if (programOwner.id === req.user.id) {
+
+    if (programOwner.id === req.user.id) { // They can delete a program they own
       const program = await prisma.updateProgram({
         data: { deletedAt: new Date() },
         where: { id },
@@ -69,7 +83,7 @@ export default class ProgramController implements IController {
 
       res.status(202).json(program);
     } else {
-      res.status(500).json({error: 'Not owner'});
+      res.status(401);
     }
   }
 }
