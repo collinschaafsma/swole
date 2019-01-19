@@ -2,6 +2,7 @@ import * as express from 'express';
 import { prisma } from '../generated/prisma-client';
 import IController from '../lib/interfaces/controller';
 import IUserRequest from '../lib/interfaces/user_request';
+import authenticate from '../middlewares/authenticate';
 
 export default class ProgramController implements IController {
   public path = '/api/v1/programs';
@@ -13,6 +14,7 @@ export default class ProgramController implements IController {
 
   private initializeRoutes() {
     this.router
+      .all(`${this.path}/*`, authenticate)
       .get(this.path, this.list)
       .get(`${this.path}/:id`, this.find)
       .post(this.path, this.create)
@@ -20,7 +22,7 @@ export default class ProgramController implements IController {
       .delete(`${this.path}/:id`, this.delete);
   }
 
-  private list = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  private list = async (req: express.Request, res: express.Response) => {
     const programs = await prisma
       .programs({
         orderBy: 'name_DESC',
@@ -32,15 +34,15 @@ export default class ProgramController implements IController {
     res.json(programs);
   }
 
-  private find = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
+  private find = async (req: express.Request, res: express.Response) => {
     const { id } = req.params;
     const program = await prisma.program({ id });
 
     res.json(program);
   }
 
-  private create = async (req: IUserRequest, res: express.Response, next: express.NextFunction) => {
-    const { name, workouts } = req.body;
+  private create = async (req: IUserRequest, res: express.Response) => {
+    const { name } = req.body;
     const program = await prisma.createProgram({
       name,
       owner: {
@@ -53,7 +55,7 @@ export default class ProgramController implements IController {
     res.status(201).json(program);
   }
 
-  private update = async (req: IUserRequest, res: express.Response, next: express.NextFunction) => {
+  private update = async (req: IUserRequest, res: express.Response) => {
     const { id } = req.params;
     const { name } = req.body;
     const programOwner = await prisma.program({ id }).owner();
@@ -71,7 +73,7 @@ export default class ProgramController implements IController {
     }
   }
 
-  private delete = async (req: IUserRequest, res: express.Response, next: express.NextFunction) => {
+  private delete = async (req: IUserRequest, res: express.Response) => {
     const { id } = req.params;
     const programOwner = await prisma.program({ id }).owner();
 
