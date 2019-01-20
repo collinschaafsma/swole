@@ -5,7 +5,6 @@ import HttpException from '../lib/exceptions/http_exception';
 import IAuthToken from '../lib/interfaces/auth_token';
 import IUserRequest from '../lib/interfaces/user_request';
 import { config } from '../lib/utils/config';
-import { logger } from '../lib/utils/logger';
 
 export default async function authenticate(req: IUserRequest, res: Response, next: NextFunction) {
   const secret = config.jwtSecret;

@@ -2,6 +2,7 @@ import * as express from 'express';
 import { prisma } from '../generated/prisma-client';
 import IController from '../lib/interfaces/controller';
 import IUserRequest from '../lib/interfaces/user_request';
+import authorize from '../lib/utils/authorize';
 import authenticate from '../middlewares/authenticate';
 
 export default class ProgramController implements IController {
@@ -54,37 +55,31 @@ export default class ProgramController implements IController {
     res.status(201).json(program);
   }
 
-  private update = async (req: IUserRequest, res: express.Response) => {
+  private update = async (req: IUserRequest, res: express.Response, next: express.NextFunction) => {
     const { id } = req.params;
     const { name } = req.body;
     const programOwner = await prisma.program({ id }).owner();
+    authorize(programOwner.id, req.user.id, next);
 
-    if (programOwner.id === req.user.id) { // They can update a program they own
-      const program = await prisma.updateProgram({
-        data: {
-          name,
-        },
-        where: { id },
-      });
-      res.status(200).json(program);
-    } else {
-      res.status(401);
-    }
+    const program = await prisma.updateProgram({
+      data: {
+        name,
+      },
+      where: { id },
+    });
+    res.status(200).json(program);
   }
 
-  private delete = async (req: IUserRequest, res: express.Response) => {
+  private delete = async (req: IUserRequest, res: express.Response, next: express.NextFunction) => {
     const { id } = req.params;
     const programOwner = await prisma.program({ id }).owner();
+    authorize(programOwner.id, req.user.id, next);
 
-    if (programOwner.id === req.user.id) { // They can delete a program they own
-      const program = await prisma.updateProgram({
-        data: { deletedAt: new Date() },
-        where: { id },
-      });
+    const program = await prisma.updateProgram({
+      data: { deletedAt: new Date() },
+      where: { id },
+    });
 
-      res.status(202).json(program);
-    } else {
-      res.status(401);
-    }
+    res.status(202).json(program);
   }
 }

@@ -2,6 +2,8 @@ import * as bcrypt from 'bcryptjs';
 import * as express from 'express';
 import { prisma } from '../generated/prisma-client';
 import IController from '../lib/interfaces/controller';
+import IUserRequest from '../lib/interfaces/user_request';
+import authorize from '../lib/utils/authorize';
 import authenticate from '../middlewares/authenticate';
 
 export default class UserController implements IController {
@@ -19,7 +21,7 @@ export default class UserController implements IController {
       .delete(`${this.path}/:id`, authenticate, this.delete);
   }
 
-  private find = async (req: express.Request, res: express.Response) => {
+  private find = async (req: IUserRequest, res: express.Response) => {
     const { id } = req.params;
     const fragment = `
     fragment UserDetail on User {
@@ -45,8 +47,10 @@ export default class UserController implements IController {
     res.json(users[0]);
   }
 
-  private update = async (req: express.Request, res: express.Response) => {
+  private update = async (req: IUserRequest, res: express.Response, next: express.NextFunction) => {
     const { id } = req.params;
+    authorize(id, req.user.id, next);
+
     const { name, email, password } = req.body;
     const hash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
     const user = await prisma.updateUser({
@@ -57,8 +61,10 @@ export default class UserController implements IController {
     res.status(200).json(user);
   }
 
-  private delete = async (req: express.Request, res: express.Response) => {
+  private delete = async (req: IUserRequest, res: express.Response, next: express.NextFunction) => {
     const { id } = req.params;
+    authorize(id, req.user.id, next);
+
     const user = await prisma.updateUser({
       data: { deletedAt: new Date() },
       where: { id },
