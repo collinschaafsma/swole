@@ -1,6 +1,7 @@
 import * as bcrypt from 'bcryptjs';
 import * as express from 'express';
 import { prisma } from '../generated/prisma-client';
+import HttpException from '../lib/exceptions/http_exception';
 import IController from '../lib/interfaces/controller';
 import IUserRequest from '../lib/interfaces/user_request';
 import authorize from '../lib/utils/authorize';
@@ -53,6 +54,13 @@ export default class UserController implements IController {
 
     if (req.body.password) {
       req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
+    }
+
+    if ((req.body.email) && (req.body.email !== req.user.email)) {
+      const emailExists = await prisma.$exists.user({ email: req.body.email});
+      if (emailExists) {
+        next(new HttpException(401, 'Email exists'));
+      }
     }
 
     const user = await prisma.updateUser({

@@ -21,8 +21,14 @@ export default class AuthenticationController implements IController {
       .post(`${this.path}/login`, this.login);
   }
 
-  private register = async (req: express.Request, res: express.Response) => {
+  private register = async (req: express.Request, res: express.Response, next: express.NextFunction) => {
     const { name, email, password } = req.body;
+
+    const emailExists = await prisma.$exists.user({ email });
+    if (emailExists) {
+      next(new HttpException(401, 'Email exists'));
+    }
+
     const hash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
     const user = await prisma.createUser({
       email,
