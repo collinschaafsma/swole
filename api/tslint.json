@@ -1,15 +1,20 @@
 {
   "defaultSeverity": "error",
   "extends": [
-      "tslint:recommended"
+    "tslint:recommended"
   ],
+  "linterOptions": {
+    "exclude": [
+      "src/generated",
+    ]
+  },
   "jsRules": {},
   "rules": {
-      "quotemark": [
-          true,
-          "single",
-          "avoid-escape"
-      ]
+    "quotemark": [
+      true,
+      "single",
+      "avoid-escape"
+    ]
   },
   "rulesDirectory": []
 }
