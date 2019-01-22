@@ -51,10 +51,12 @@ export default class UserController implements IController {
     const { id } = req.params;
     authorize(id, req.user.id, next);
 
-    const { name, email, password } = req.body;
-    const hash = bcrypt.hashSync(password, bcrypt.genSaltSync(10));
+    if (req.body.password) {
+      req.body.password = bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10));
+    }
+
     const user = await prisma.updateUser({
-      data: { name, email, password: hash },
+      data: req.body,
       where: { id },
     });
 
