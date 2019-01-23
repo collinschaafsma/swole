@@ -5,6 +5,7 @@ import HttpException from '../lib/exceptions/http_exception';
 import IController from '../lib/interfaces/controller';
 import IUserRequest from '../lib/interfaces/user_request';
 import authorize from '../lib/utils/authorize';
+import wrapAsync from '../lib/utils/wrap_async';
 import authenticate from '../middlewares/authenticate';
 
 export default class UserController implements IController {
@@ -17,9 +18,9 @@ export default class UserController implements IController {
 
   private initializeRoutes() {
     this.router
-      .get(`${this.path}/:id`, authenticate, this.find)
-      .put(`${this.path}/:id`, authenticate, this.update)
-      .delete(`${this.path}/:id`, authenticate, this.delete);
+      .get(`${this.path}/:id`, authenticate, wrapAsync(this.find))
+      .put(`${this.path}/:id`, authenticate, wrapAsync(this.update))
+      .delete(`${this.path}/:id`, authenticate, wrapAsync(this.delete));
   }
 
   private find = async (req: IUserRequest, res: express.Response) => {

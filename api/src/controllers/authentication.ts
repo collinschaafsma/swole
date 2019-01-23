@@ -6,6 +6,8 @@ import HttpException from '../lib/exceptions/http_exception';
 import IAuthToken from '../lib/interfaces/auth_token';
 import IController from '../lib/interfaces/controller';
 import { config } from '../lib/utils/config';
+import wrapAsync from '../lib/utils/wrap_async';
+
 
 export default class AuthenticationController implements IController {
   public path = '/auth';
@@ -17,8 +19,8 @@ export default class AuthenticationController implements IController {
 
   private initializeRoutes() {
     this.router
-      .post(`${this.path}/register`, this.register)
-      .post(`${this.path}/login`, this.login);
+      .post(`${this.path}/register`, wrapAsync(this.register))
+      .post(`${this.path}/login`, wrapAsync(this.login));
   }
 
   private register = async (req: express.Request, res: express.Response, next: express.NextFunction) => {

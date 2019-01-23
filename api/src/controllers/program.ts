@@ -3,6 +3,7 @@ import { prisma } from '../generated/prisma-client';
 import IController from '../lib/interfaces/controller';
 import IUserRequest from '../lib/interfaces/user_request';
 import authorize from '../lib/utils/authorize';
+import wrapAsync from '../lib/utils/wrap_async';
 import authenticate from '../middlewares/authenticate';
 
 export default class ProgramController implements IController {
@@ -15,11 +16,11 @@ export default class ProgramController implements IController {
 
   private initializeRoutes() {
     this.router
-      .get(this.path, authenticate, this.list)
-      .get(`${this.path}/:id`, authenticate, this.find)
-      .post(this.path, authenticate, this.create)
-      .put(`${this.path}/:id`, authenticate, this.update)
-      .delete(`${this.path}/:id`, authenticate, this.delete);
+      .get(this.path, authenticate, wrapAsync(this.list))
+      .get(`${this.path}/:id`, authenticate, wrapAsync(this.find))
+      .post(this.path, authenticate, wrapAsync(this.create))
+      .put(`${this.path}/:id`, authenticate, wrapAsync(this.update))
+      .delete(`${this.path}/:id`, authenticate, wrapAsync(this.delete));
   }
 
   private list = async (req: express.Request, res: express.Response) => {
